@@ -1,0 +1,85 @@
+.navbar_menu {
+	/*min-height:       50px;*/
+	font-size:        large;
+	font-weight:      bold;
+}
+
+
+.wpowerswitch_container {
+	background-color: #f4f4f4;
+	padding-bottom:   0px;
+}
+
+.wpowerswitch_text {
+	background-color: #f4f4f4;
+	vertical-align:   middle;
+	font-size:        large;
+}
+
+.wpowerswitch_buttonOn {
+	background-color: none;
+	min-width:        5em;
+	min-height:       50px;
+	font-size:        large;
+}
+
+.wpowerswitch_buttonOff {
+	background-color: none;
+	min-width:        5em;
+	min-height:       50px;
+	font-size:        large;
+}
+
+
+.wdimmerpowerswitch_container {
+	background-color: #f4f4f4;
+	padding-bottom:   0px;
+}
+
+.wdimmerpowerswitch_text {
+	background-color: #f4f4f4;
+	vertical-align:   middle;
+	font-size:        large;
+}
+
+.wdimmerpowerswitch_slider {
+	background-color: #f4f4f4;
+}
+
+.wdimmerpowerswitch_buttonOn {
+	background-color: none;
+	min-width:        5em;
+	min-height:       50px;
+	font-size:        large;
+}
+
+.wdimmerpowerswitch_buttonOff {
+	background-color: none;
+	min-width:        5em;
+	min-height:       50px;
+	font-size:        large;
+}
+
+
+.primetext {
+	font-weight:      bold;
+}
+
+
+.wpresetbuttongrid_container {
+	background-color: #f4f4f4;
+	padding-bottom:   0px;
+}
+
+.wpresetbuttongrid_button {
+	background-color: none;
+	min-height:       50px;
+	font-size:        large;
+}
+
+
+.debugtext {
+	vertical-align:   middle;
+	font-weight:      normal;
+	min-height:       50px;
+}

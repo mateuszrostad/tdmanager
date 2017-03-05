@@ -1,0 +1,98 @@
+<DeviceDefinitions>
+    <Device id="0" class="DeviceNexaEYCR201" description="Hjørnelampe" location="Stue"/>
+    <Device id="1" class="DeviceEverflourishEMW200RA" description="Leselampe" location="Stue"/>
+    <Device id="2" class="DeviceNexaEYCR201" description="Grasshopper-lampe" location="Stue"/>
+    <Device id="3" class="DeviceNexaEYCR201" description="Bordlampe" location="Stue"/>
+    <Device id="4" class="DeviceNexaEYCR201" description="Gulvlamper forran" location="Kjellerstue"/>
+    <Device id="5" class="DeviceNexaEYCR201" description="Gulvlamper bak" location="Kjellerstue"/>
+    <Device id="6" class="DeviceNexaEYCR201" description="Leselampe" location="Kjellerstue"/>
+    <Device id="7" class="DeviceNexaEYCR201" description="Taklampe" location="Soverom 1"/>
+    <Device id="8" class="DeviceNexaEYCR201" description="Nattbordlampe innerst" location="Soverom 1"/>
+    <Device id="9" class="DeviceNexaEYCR201" description="Nattbordlampe ytterst" location="Soverom 1"/>
+</DeviceDefinitions>
+<DeviceFactory>
+	<Instance factorykey="DeviceNexaEYCR201" deviceid="0">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Instance>
+	<Instance factorykey="DeviceEverflourishEMW200RA" deviceid="1">
+		<StateParam value="1"/>
+	</Instance>
+	<Instance factorykey="DeviceNexaEYCR201" deviceid="2">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Instance>
+	<Instance factorykey="DeviceNexaEYCR201" deviceid="3">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Instance>
+	<Instance factorykey="DeviceNexaEYCR201" deviceid="4">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Instance>
+	<Instance factorykey="DeviceNexaEYCR201" deviceid="5">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Instance>
+	<Instance factorykey="DeviceNexaEYCR201" deviceid="6">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Instance>
+	<Instance factorykey="DeviceNexaEYCR201" deviceid="7">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Instance>
+	<Instance factorykey="DeviceNexaEYCR201" deviceid="8">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Instance>
+	<Instance factorykey="DeviceNexaEYCR201" deviceid="9">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Instance>
+</DeviceFactory>
+<RFDispatcher>
+	<RegisteredDevice deviceid="0" codeid="103"/>
+	<RegisteredDevice deviceid="1" codeid="201"/>
+	<RegisteredDevice deviceid="2" codeid="102"/>
+	<RegisteredDevice deviceid="3" codeid="101"/>
+	<RegisteredDevice deviceid="4" codeid="104"/>
+	<RegisteredDevice deviceid="5" codeid="105"/>
+	<RegisteredDevice deviceid="6" codeid="106"/>
+	<RegisteredDevice deviceid="7" codeid="107"/>
+	<RegisteredDevice deviceid="8" codeid="108"/>
+	<RegisteredDevice deviceid="9" codeid="109"/>
+</RFDispatcher>
+<WebApp>
+	<Panel menuitemstring="Stue">
+		<PowerSwitchDeviceGroup>
+			<Device id="0"/>
+			<Device id="1"/>
+			<Device id="2"/>
+			<Device id="3"/>
+		</PowerSwitchDeviceGroup>
+		<DimmerPowerSwitchSingleDevice deviceid="0"/>
+		<PowerSwitchSingleDevice deviceid="1"/>
+		<DimmerPowerSwitchSingleDevice deviceid="2"/>
+		<DimmerPowerSwitchSingleDevice deviceid="3"/>
+		<PresetButtonGrid>
+			<PresetButton string="Normalt lys">
+				<Actuator deviceid="0">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="1">
+					<StateParam value="1"/>
+				</Actuator>
+				<Actuator deviceid="2">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="3">
+					<StateParam value="1"/>
+					<StateParam value="6"/>
+				</Actuator>
+			</PresetButton>
+		</PresetButtonGrid>
+	</Panel>
+</WebApp>
