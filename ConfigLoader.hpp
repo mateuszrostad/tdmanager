@@ -34,20 +34,21 @@ public:
 	~ConfigLoader();
 	
 	
-	XMLElement* getDeviceFactoryDataRootElement() {return getRootElement("DeviceFactory");}
-	XMLElement* getRFDispatcherDataRootElement()  {return getRootElement("RFDispatcher");}
-	XMLElement* getWebAppDataRootElement()        {return getRootElement("WebApp");}
+	XMLElement* getRootElementDeviceFactory() {return getRootElement("DeviceFactory");}
+	XMLElement* getRootElementRFDispatcher()  {return getRootElement("RFDispatcher");}
+	XMLElement* getRootElementWebApp()        {return getRootElement("WebApp");}
 
-	bool parseInstance(        const XMLElement&, Factory::Key*, Device::DeviceId*, StateStrVec*);
-	bool parseRegisteredDevice(const XMLElement&, Device::DeviceId*, int*);
-	std::string& getStateParam(const XMLElement&);
+	static bool parseInstance(        const XMLElement&, Factory::Key*, Device::DeviceId*, StateStrVec*);
+	static bool parseRegisteredDevice(const XMLElement&, Device::DeviceId*, int*);
+	static std::string& getStateParam(const XMLElement&);
 
 
 protected:
 	
 	XMLElement* getRootElement(const std::string&);
-	bool        validateElement(const XMLElement&, const std::string&, const std::vector<std::string>& attributes, bool verbose = true, bool hard = false);
-	bool        validateElement(const XMLElement&, const std::string&, bool verbose = true, bool hard = false);
+	static bool validateElement(const XMLElement&, const std::string&, const std::vector<std::string>& attributes, bool verbose = true, bool hard = false);
+	static bool validateElement(const XMLElement&, const std::string&, bool verbose = true, bool hard = false);
+	static bool elementIs(const XMLElement& xmlElement, const std::string& name) {return validateElement(xmlElement, name, false, false);}
 	
 };
 

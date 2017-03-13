@@ -24,6 +24,38 @@
 #include <Wt/WBootstrapTheme>
 
 
+#include <tinyxml2.h>
+
+void WebApp::setPanelLayoutFromXML(Wt::WVBoxLayout* layout, XMLElement* xmlPanel)
+{
+	layout->setContentsMargins(0, 0, 0, 0);
+	layout->setSpacing(4);
+
+	for (XMLElement* xmlElement = xmlPanel->FirstChildElement(); xmlElement != nullptr; xmlElement = xmlPanel->NextSiblingElement())
+	{
+		if      (ConfigLoader::elementIs(*xmlElement, "PowerSwitchDeviceGroup"))
+		{
+			ConfigLoader::validateElement(*xmlElement, "PowerSwitchDeviceGroup", "string", true, true);
+
+		}
+		else if (ConfigLoader::elementIs(*xmlElement, "PowerSwitchSingleDevice"))
+		{
+			ConfigLoader::validateElement(*xmlElement, "PowerSwitchSingleDevice", "deviceid", true, true);
+			
+		}
+		else if (ConfigLoader::elementIs(*xmlElement, "DimmerPowerSwitchSingleDevice"))
+		{
+			ConfigLoader::validateElement(*xmlElement, "DimmerPowerSwitchSingleDevice", "deviceid", true, true);
+			
+		}
+		else if (ConfigLoader::elementIs(*xmlElement, "PresetButtonGrid"))
+		{
+			//ConfigLoader::validateElement(*xmlElement, "PresetButtonGrid", true, true);
+			
+		}
+	}
+}
+
 //WebApp::WebApp(const Wt::WEnvironment& env, Device::DeviceMap& _devices) : Wt::WApplication(env), devices(_devices) //, sessions(_sessions)
 WebApp::WebApp(const Wt::WEnvironment& env) : Wt::WApplication(env)
 {
@@ -52,13 +84,31 @@ WebApp::WebApp(const Wt::WEnvironment& env) : Wt::WApplication(env)
 	navBar->setMargin(12, Wt::Top | Wt::Bottom);
 
 	// Pointers for navBar menu-items
-	Wt::WContainerWidget* container;
-	Wt::WVBoxLayout*      layout;
+	//Wt::WContainerWidget* container;
+	//Wt::WVBoxLayout*      layout;
 	
 	WPowerSwitchDeviceGroup* powerSwitchGroup;
 	WPresetButtonGrid*       presetGrid;
 	WPresetButton*           presetButton;
 
+	//Experimental config loader
+	XMLElement* xmlWebApp = ConfigLoader::getInstance()->getRootElement("WebApp");
+	for (XMLElement* xmlElement = xmlWebApp->FirstChildElement(); xmlElement != nullptr; xmlElement = xmlWebApp->NextSiblingElement())
+	{
+		if (ConfigLoader::elementIs(*xmlElement, "Panel"))
+		{
+			ConfigLoader::validateElement(*xmlElement, "Panel", "menuitemstring", true, true);
+			
+			Wt::WVBoxLayout* layout = new Wt::WVBoxLayout();
+			setPanelLayoutFromXML(layout, xmlElement);
+			
+			Wt::WContainerWidget* container = new Wt::WContainerWidget();
+			container->setLayout(layout);
+			menu->addItem(xmlElement->Attribute("menuitemstring"), container);
+		}
+	}
+	
+	
 	// Set up navBar menu-item "Stue"
 	layout = new Wt::WVBoxLayout();
 	layout->setContentsMargins(0, 0, 0, 0);

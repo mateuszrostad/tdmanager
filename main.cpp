@@ -90,12 +90,12 @@ void makeDevices()
 	Device::DeviceId deviceId;
 	StateStrVec      paramStrVec;
 
-	XMLElement* xmlDeviceFactory = ConfigLoader::getInstance()->getDeviceFactoryDataRootElement();
+	XMLElement* xmlDeviceFactory = ConfigLoader::getInstance()->getRootElementDeviceFactory();
 
 	for (XMLElement* xmlInstance = xmlDeviceFactory->FirstChildElement("Instance"); xmlInstance != nullptr; xmlInstance = xmlDeviceFactory->NextSiblingElement("Instance"))
 	{
 		// Terminate if parser fails, indicating a faulty xml config file
-		if (ConfigLoader::getInstance()->parseInstance(*xmlInstance, &factoryKey, &deviceId, &paramStrVec))
+		if (ConfigLoader::parseInstance(*xmlInstance, &factoryKey, &deviceId, &paramStrVec))
 			Factory::make(factoryKey, deviceId, paramStrVec);
 		else
 			exit(EXIT_FAILURE);
@@ -108,12 +108,12 @@ void registerDevicesWithRFDispatcher()
 	Device::DeviceId deviceId;
 	int codeId;
 	
-	XMLElement* xmlRFDispatcher = ConfigLoader::getInstance()->getRFDispatcherDataRootElement();
+	XMLElement* xmlRFDispatcher = ConfigLoader::getInstance()->getRootElementRFDispatcher();
 
 	for (XMLElement* xmlRegisteredDevice = xmlRFDispatcher->FirstChildElement("RegisteredDevice"); xmlRegisteredDevice != nullptr; xmlRegisteredDevice = xmlRFDispatcher->NextSiblingElement("RegisteredDevice"))
 	{
 		// Terminate if parser fails, indicating a faulty xml config file
-		if (ConfigLoader::getInstance()->parseRegisteredDevice(*xmlRegisteredDevice, &deviceId, &codeId))
+		if (ConfigLoader::parseRegisteredDevice(*xmlRegisteredDevice, &deviceId, &codeId))
 			RFDispatcher::getInstance()->registerDevice(Device::getDevice(deviceId), codeId);
 		else
 			exit(EXIT_FAILURE);

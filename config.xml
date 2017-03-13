@@ -1,14 +1,14 @@
 <DeviceDefinitions>
-    <Device id="0" class="DeviceNexaEYCR201" description="Hjørnelampe" location="Stue"/>
-    <Device id="1" class="DeviceEverflourishEMW200RA" description="Leselampe" location="Stue"/>
-    <Device id="2" class="DeviceNexaEYCR201" description="Grasshopper-lampe" location="Stue"/>
-    <Device id="3" class="DeviceNexaEYCR201" description="Bordlampe" location="Stue"/>
-    <Device id="4" class="DeviceNexaEYCR201" description="Gulvlamper forran" location="Kjellerstue"/>
-    <Device id="5" class="DeviceNexaEYCR201" description="Gulvlamper bak" location="Kjellerstue"/>
-    <Device id="6" class="DeviceNexaEYCR201" description="Leselampe" location="Kjellerstue"/>
-    <Device id="7" class="DeviceNexaEYCR201" description="Taklampe" location="Soverom 1"/>
-    <Device id="8" class="DeviceNexaEYCR201" description="Nattbordlampe innerst" location="Soverom 1"/>
-    <Device id="9" class="DeviceNexaEYCR201" description="Nattbordlampe ytterst" location="Soverom 1"/>
+    <Device id="0" class="DeviceNexaEYCR201" name="Hjørnelampe" location="Stue"/>
+    <Device id="1" class="DeviceEverflourishEMW200RA" name="Leselampe" location="Stue"/>
+    <Device id="2" class="DeviceNexaEYCR201" name="Grasshopper-lampe" location="Stue"/>
+    <Device id="3" class="DeviceNexaEYCR201" name="Bordlampe" location="Stue"/>
+    <Device id="4" class="DeviceNexaEYCR201" name="Gulvlamper forran" location="Kjellerstue"/>
+    <Device id="5" class="DeviceNexaEYCR201" name="Gulvlamper bak" location="Kjellerstue"/>
+    <Device id="6" class="DeviceNexaEYCR201" name="Leselampe" location="Kjellerstue"/>
+    <Device id="7" class="DeviceNexaEYCR201" name="Taklampe" location="Soverom 1"/>
+    <Device id="8" class="DeviceNexaEYCR201" name="Nattbordlampe innerst" location="Soverom 1"/>
+    <Device id="9" class="DeviceNexaEYCR201" name="Nattbordlampe ytterst" location="Soverom 1"/>
 </DeviceDefinitions>
 <DeviceFactory>
 	<Instance factorykey="DeviceNexaEYCR201" deviceid="0">
@@ -65,7 +65,7 @@
 </RFDispatcher>
 <WebApp>
 	<Panel menuitemstring="Stue">
-		<PowerSwitchDeviceGroup>
+		<PowerSwitchDeviceGroup string="Alle lamper">
 			<Device id="0"/>
 			<Device id="1"/>
 			<Device id="2"/>
