@@ -7,14 +7,10 @@
 #include <Wt/WApplication>
 #include "ConfigLoader.hpp"
 
-//class SessionsContainer;
-
 namespace Wt
 {
 	class WEnvironment;
 	class WVBoxLayout;
-	//class WContainerWidget;
-	//class WSlider;
 }
 
 
@@ -25,6 +21,7 @@ public: // Static interface
 
 	// XML-parser
 	static Wt::WVBoxLayout* getPanelLayoutFromXML(XMLElement*);
+
 	
 public:
 
@@ -33,10 +30,9 @@ public:
 	
 	void callback();
 
+
 private:
-	
-	std::mutex     mtx;
-	//SessionsContainer* sessions;
+	std::mutex mtx;
 
 };
 

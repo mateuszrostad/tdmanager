@@ -2,7 +2,6 @@
 #define WPowerSwitch_hpp
 
 #include "BasicDevices.hpp"
-//#include <set>
 #include <map>
 #include <Wt/WContainerWidget>
 #include "ConfigLoader.hpp"
@@ -56,8 +55,6 @@ private:
  * class WPowerSwitchSingleDevice
  */
 
-//class DevicePowerSwitch;
-
 class WPowerSwitchSingleDevice : public WPowerSwitch
 {
 
@@ -69,14 +66,11 @@ public:
 
 	WPowerSwitchSingleDevice(                  Wt::WString, Style style = Body, Wt::WContainerWidget* parent = 0);
 	WPowerSwitchSingleDevice(Device::DeviceId, Wt::WString, Style style = Body, Wt::WContainerWidget* parent = 0);
-	//WPowerSwitchSingleDevice(DevicePowerSwitch*, Wt::WString, Style style = Body, Wt::WContainerWidget* parent = 0); // Unsafe
 
 	~WPowerSwitchSingleDevice();
 	
 	void setDevice(Device::DeviceId);
 	void removeDevice();
-	//void setDevice(DevicePowerSwitch*); // Unsafe
-	//DevicePowerSwitch* getDevice();
 	bool             getDeviceIsSet() {return deviceIsSet;}
 	Device::DeviceId getDeviceId()    {return deviceId;}
 
@@ -89,7 +83,6 @@ protected:
 	bool             deviceIsSet;
 
 	int              slotIdPowerState, slotIdBeforeDelete;
-	//bool             connectedToDeviceSignal;
 	
 };
 
@@ -102,33 +95,24 @@ class WPowerSwitchDeviceGroup : public WPowerSwitch
 {
 	
 public:
-
 	static WPowerSwitchDeviceGroup* parseXML(XMLElement*);
 	
+
 public:
 
-	//typedef Device::GenericDeviceMap<DevicePowerSwitch*> DeviceMap;
-	//typedef std::vector<DevicePowerSwitch*> DevicePtrListType;
-	//typedef std::set<Device::DeviceId> DeviceIds;
-
-	WPowerSwitchDeviceGroup(           Wt::WString, Style style = Body, Wt::WContainerWidget* parent = 0);
-	//WPowerSwitchDeviceGroup(DeviceIds, Wt::WString, Style style = Body, Wt::WContainerWidget* parent = 0);
-	//WPowerSwitchDeviceGroup(DeviceMap,   Wt::WString, Style style = Body, Wt::WContainerWidget* parent = 0);
+	WPowerSwitchDeviceGroup(Wt::WString, Style style = Body, Wt::WContainerWidget* parent = 0);
 	
 	~WPowerSwitchDeviceGroup();
 
-	//void addDevice(DevicePowerSwitch*);
 	void addDevice(Device::DeviceId);
-	//void removeDevice(DevicePowerSwitch*);
 	void removeDevice(Device::DeviceId);
 	void removeAllDevices();
 
 	virtual void buttonOn_clicked();
 	virtual void buttonOff_clicked();
+
 	
 protected:
-
-	//DeviceIds deviceIds;
 	typedef int SlotId;
 	std::map<Device::DeviceId, SlotId> deviceMap;
 	

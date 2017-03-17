@@ -1,5 +1,4 @@
 #include <iostream> // cout
-//#include <fstream>
 #include <unistd.h> // usleep
 #include <thread>
 #include <csignal>
@@ -13,23 +12,13 @@
 #include "RFDispatcher.hpp"
 #include "WebApp.hpp"
 #include "RawEventHandler.hpp"
-//#include "SessionsContainer.hpp"
 #include "main.hpp"
 #include <Wt/WServer>
-//#include <Wt/WApplication>
 #include <Wt/WString>
 
 
 #define sleepWhileSend usleep(1e6)
 
-
-//DeviceListType devices;
-
-//SessionsContainer* sessions;
-
-
-
-//XMLElement* getRFDispatcherDataRootElement();
 
 
 int main(int argc, char** argv)
@@ -39,16 +28,6 @@ int main(int argc, char** argv)
 	makeDevices();
 	registerDevicesWithRFDispatcher();
 
-	/*
-	if (std::ifstream(deviceStateFileName))
-	{
-		std::ifstream deviceStateFileIn;
-		deviceStateFileIn.open(deviceStateFileName);
-		istreamDevices(deviceStateFileIn);
-		deviceStateFileIn.close();
-	}
-	*/
-	
 	tdInit();
 
 	int callbackId = tdRegisterRawDeviceEvent(rawEventCallback, NULL);
@@ -58,8 +37,6 @@ int main(int argc, char** argv)
 
 	// Webtoolkit, do some initialization
 	Wt::WString::setDefaultEncoding(Wt::UTF8);
-	// Construct SessionsContainer
-	//SessionsContainer::instantiate();
 
 	// Webtoolkint, run server
 	Wt::WRun(argc, argv, &createWebApp);
@@ -71,13 +48,6 @@ int main(int argc, char** argv)
 	tdUnregisterCallback(callbackId);
 	tdClose();
 
-	/*
-	std::ofstream deviceStateFileOut;
-	deviceStateFileOut.open(deviceStateFileName);
-	ostreamDevices(deviceStateFileOut);
-	deviceStateFileOut.close();
-	*/
-	
 	Device::freeAllDevices();
 
 	return 0;
@@ -126,53 +96,10 @@ void registerDevicesWithRFDispatcher()
 }
 
 
-/*
-Device* addDevice(Device* _device)
-{
-	devices.push_back(_device);
-	return _device;
-}
-*/
-
-
-/*
-#include <string>
-#include <sstream>
-
-void istreamDevices(std::istream& is)
-{
-	std::string line;
-	std::getline(is, line);
-	std::stringstream linestream(line);
-
-	Device::DeviceList& devices = Device::getDeviceList();
-	
-	unsigned int _numDevices;
-	linestream >> _numDevices;
-	if (_numDevices != devices.size())
-	{
-		std::cout << "Number of devices changed. Ignoring current device state log file." << std::endl;
-		return;
-	}
-	
-	for (Device::DeviceList::iterator it = devices.begin(); it != devices.end(); ++it)
-		is >> it->second;
-}
-
-
-void ostreamDevices(std::ostream& os)
-{
-	Device::DeviceList& devices = Device::getDeviceList();
-	os << Device::getDeviceList().size() << std::endl;
-	for (Device::DeviceList::iterator it = devices.begin(); it != devices.end(); ++it)
-		os << it->second;
-}
-*/
 
 
 Wt::WApplication* createWebApp(const Wt::WEnvironment& env)
 {
-	//Wt::WApplication* _wapp = new WebApp(env, Device::getDeviceMap());
 	Wt::WApplication* _wapp = new WebApp(env);
 	return _wapp;
 }
@@ -290,7 +217,6 @@ void rawEventCallback(const char* data, int controllerId, int callbackId, void* 
 			
 			else if (eventData->group == 0 && eventData->unit == 9 && eventData->method == turnon)
 			{
-				//devices[0]->actuate({DevicePowerSwitch::On, 15});
 				DeviceNexaEYCR201_cast(         devices.at(0))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
 				DeviceEverflourishEMW200RA_cast(devices.at(1))->setState(DevicePowerSwitch      ::StateType{DevicePowerSwitch::On});
 				DeviceNexaEYCR201_cast(         devices.at(2))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});

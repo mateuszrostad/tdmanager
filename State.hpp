@@ -21,12 +21,10 @@
 #include <vector>
 #include <cstdlib> // exit, EXIT_FAILURE
 
-//struct StateBase {virtual ~StateBase() {}};
-
 typedef std::vector<std::string> StateStrVec;
 
 template <typename Derived, typename... Args>
-struct State //: public StateBase
+struct State
 {
 
 private:
@@ -114,19 +112,6 @@ public:
 	State() = default;
 	State(Args... args) : stateTuple(args...) {}
 	State(const StateStrVec& strvec)          {parse(strvec);}
-	// Copy- and move-constructors are implicitly-declared and -defined
-	//State(State const & state)       : stateTuple(state.stateTuple)     {} // Copy state-tuple
-	//State(State const && state)      : stateTuple(state())     {} // Copy state-tuple
-
-	// Special copy-tuple- and move-tupoe-constructors are obsolete
-	//State(StateTuple  const & _stateTuple) : stateTuple(_stateTuple) {} // Copy state-tuple
-	//State(StateTuple  const && _stateTuple) : stateTuple(_stateTuple) {} // Copy state-tuple
-	
-	// Copy- and move-assignment operatos are implicitly-declared and -defined
-	//State& operator=(State const & state) {stateTuple = state.stateTuple; return *this;}
-	
-	// Special tuple-assignment operators are obsolete
-	//State& operator=(StateTuple _stateTuple)    {stateTuple = _stateTuple;      return *this;}
 	
 	// Static number of elements in state-tuple
 	static constexpr std::size_t             size = sizeof...(Args);
@@ -206,9 +191,6 @@ public:
 
 #define stateType(Type) Type##State
 
-//#define declare_state_class(Type)
-//struct stateType(Type);
-
 #define define_state_class(T, ...)\
 struct stateType(T) : public State<stateType(T), ##__VA_ARGS__> {\
 stateType(T)()                                         : State() {}\
@@ -220,7 +202,6 @@ template <std::size_t N> Type<N>     fromString(const std::string& str)   {retur
 //template <std::size_t N> std::string toString(  Type<N>)            {static_assert(N!=N, "No specialization for function template toString() in derived class of State."); return "";}
 //template <std::size_t N> Type<N>     fromString(const std::string&) {static_assert(N!=N, "No specialization for function template fromString() in derived class of State."); return Type<N>();}};
 
-//stateType(T)(const stateType(T)&& st) = default;
 
 /* Macros for easy specialization of member function templates toString<int>(...)
  * and fromString<N>(...). Parameter fname must be a callable name of a function

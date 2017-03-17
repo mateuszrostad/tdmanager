@@ -1,27 +1,14 @@
 #include "Device.hpp"
 #include <iostream>
-//#include <cctype> // isspace()
-//#include <cstdio> // EOF
 #include <cstdlib> // exit, EXIT_FAILURE
 #include <cstring> // stoi
 #include "RFDispatcher.hpp"
 #include "ConfigLoader.hpp"
 
 
-//#include "SessionsContainer.hpp"
-//#include "WebApp.hpp"
-//#include <Wt/WApplication>
-//#include <Wt/WServer>
-
-
 /*******************************************************************************
  * class Device implementation
  */
-
-
-// Register in Factory
-// or rather not, as long as Device contains pure virtual functions
-//FactoryRegistrar<Device, int> registrar_Device("Device");
 
 
 // Static vars
@@ -104,73 +91,3 @@ Device::~Device()
 {
 	beforeDeleteSignal.emit();
 }
-
-// Func def
-
-
-/*
-void Device::actuate(State state, bool force)
-{}
-*/	
-
-/*
-DeviceActuator Device::getActuator(State state, bool force)
-{
-	return std::bind([](){});
-}
-*/
-
-/*
-void Device::streamout(std::ostream& os)
-{
-	os << deviceId << " " << getClassname();
-}
-*/
-
-/*
-bool Device::streamin(std::istream& is)
-{
-	int _deviceId;
-	std::string _classname;
-	
-	is >> _deviceId;
-	if (_deviceId != getDeviceId())
-	{
-		std::cout << "Device: Log file device ID " << _deviceId << " does not match actual device id: " << getDeviceId() << std::endl;
-		return false;
-	}
-	
-	is >> _classname;
-	if (_classname.compare(getClassname()) != 0)
-	{
-		std::cout  << "Device: Log file device ID: " << _deviceId << " Classname: " << _classname << " does not match device classname: " << getClassname() << std::endl;
-		return false;
-	}
-
-	return true;
-}
-*/
-
-/*
-std::ostream& operator<<(std::ostream& os, Device* obj)
-{
-	obj->streamout(os);
-	os << std::endl;
-	return os;
-}
-*/
-
-/*
-#include <string>
-#include <sstream>
-
-std::istream& operator>>(std::istream& is, Device* obj)
-{
-	std::string line;
-	std::getline(is, line);
-	std::stringstream linestream(line);
-	obj->streamin(linestream);
-	return is;
-}
-*/
-

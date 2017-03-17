@@ -6,9 +6,6 @@
 #include <cstdlib>
 #include <vector>
 #include <string>
-//#include "Factory.hpp"
-//#include "Device.hpp"
-//#include "State.hpp"
 
 using namespace tinyxml2;
 

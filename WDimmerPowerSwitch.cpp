@@ -15,7 +15,6 @@
  * class WDimmerPowerSwitch
  */
 
-//WDimmerPowerSwitch::WDimmerPowerSwitch(Wt::WString title, int powerState, int dimValueMin, int dimValueMax, int dimValueInterval, int dimValue, Style style, Wt::WContainerWidget* parent) :
 WDimmerPowerSwitch::WDimmerPowerSwitch(Wt::WString title, int dimValueMin, int dimValueMax, int dimValueInterval, Style style, Wt::WContainerWidget* parent) :
 Wt::WContainerWidget(parent), buttonOnActive(false), buttonOffActive(false), slider(nullptr), buttonOn(nullptr), buttonOff(nullptr)
 {
@@ -44,12 +43,8 @@ Wt::WContainerWidget(parent), buttonOnActive(false), buttonOffActive(false), sli
 	//slider->setNativeControl(true);
 	slider->setTickPosition(Wt::WSlider::TicksBelow | Wt::WSlider::TicksAbove);
 
-	// slider->setTickInterval(dimValueInterval);
-	// slider->setMinimum(dimValueMin);
-	// slider->setMaximum(dimValueMax);
 	setSliderParams(dimValueMin, dimValueMax, dimValueInterval);
 	
-	//slider->setValue(dimValue); // Dim level indicator position left unset
 	slider->resize(500, 50);
 	//slider->setVerticalAlignment(Wt::AlignMiddle);
 	slider->setStyleClass("wdimmerpowerswitch_slider");
@@ -73,10 +68,6 @@ Wt::WContainerWidget(parent), buttonOnActive(false), buttonOffActive(false), sli
 	
 	//new Wt::WBreak(container);
 
-	// Power state indicator value left unset
-	// if (powerState == 0 || powerState == 1)
-		// updatePowerStateIndicator(powerState);
-
 }
 
 
@@ -90,27 +81,6 @@ WDimmerPowerSwitch(title, dimValueMin, dimValueMax, dimValueInterval, style, par
 
 void WDimmerPowerSwitch::updatePowerStateIndicator(DimmerPowerSwitchInterface::PowerState newPowerState)
 {
-	/*
-	if      (newPowerState == 1) // On
-	{
-		if (buttonOff->hasStyleClass("btn-primary"))
-			buttonOff->removeStyleClass("btn-primary");
-		if (!(buttonOn->hasStyleClass("btn-primary")))
-			buttonOn->addStyleClass("btn-primary");
-	}
-	else if (newPowerState == 0) // Off
-	{
-		if (buttonOn->hasStyleClass("btn-primary"))
-			buttonOn->removeStyleClass("btn-primary");
-		if (!(buttonOff->hasStyleClass("btn-primary")))
-			buttonOff->addStyleClass("btn-primary");
-	}
-	else
-	{
-		std::cout << "WDimmerPowerSwitch::updatePowerStateIndicator(int): recieved invalid new state " << newPowerState << "." << std::endl;
-	}
-	*/
-	
 	bool updated = false;
 	if      (newPowerState == DimmerPowerSwitchInterface::On) // On
 	{
@@ -205,8 +175,6 @@ WDimmerPowerSwitchSingleDevice* WDimmerPowerSwitchSingleDevice::parseXML(XMLElem
 WDimmerPowerSwitchSingleDevice::WDimmerPowerSwitchSingleDevice(                              Wt::WString title, Style style, Wt::WContainerWidget* parent) :
 WDimmerPowerSwitch(title, 0, 1, 1, style, parent), deviceIsSet(false)
 {
-	// slotIdPowerState = device->powerStateUpdated().connect(Wt::WApplication::instance(), std::bind(&WDimmerPowerSwitch::updatePowerStateIndicator, this, std::placeholders::_1));
-	// slotIdDimLevel   = device->dimLevelUpdated().connect(  Wt::WApplication::instance(), std::bind(&WDimmerPowerSwitch::updateDimLevelIndicator,   this, std::placeholders::_1));
 }
 
 
@@ -214,17 +182,12 @@ WDimmerPowerSwitchSingleDevice::WDimmerPowerSwitchSingleDevice(Device::DeviceId 
 WDimmerPowerSwitchSingleDevice(title, style, parent)
 {
 	setDevice(newDeviceId);
-	// slotIdPowerState = device->powerStateUpdated().connect(Wt::WApplication::instance(), std::bind(&WDimmerPowerSwitch::updatePowerStateIndicator, this, std::placeholders::_1));
-	// slotIdDimLevel   = device->dimLevelUpdated().connect(  Wt::WApplication::instance(), std::bind(&WDimmerPowerSwitch::updateDimLevelIndicator,   this, std::placeholders::_1));
 }
 
 
 WDimmerPowerSwitchSingleDevice::~WDimmerPowerSwitchSingleDevice()
 {
 	removeDevice();
-	//deviceSignalDisconnect();
-	// device->powerStateUpdated().disconnect(slotIdPowerState);
-	// device->dimLevelUpdated().disconnect(slotIdDimLevel);
 }
 
 
@@ -260,8 +223,6 @@ void WDimmerPowerSwitchSingleDevice::setDevice(Device::DeviceId newDeviceId)
 	slotIdBeforeDelete = newDevice    ->beforeDelete()     .connect(Wt::WApplication::instance(), std::bind(&WDimmerPowerSwitchSingleDevice::removeDevice,              this));
 	slotIdPowerState   = newDeviceDPSI->powerStateUpdated().connect(Wt::WApplication::instance(), std::bind(&WDimmerPowerSwitchSingleDevice::updatePowerStateIndicator, this, std::placeholders::_1));
 	slotIdDimLevel     = newDeviceDPSI->dimLevelUpdated()  .connect(Wt::WApplication::instance(), std::bind(&WDimmerPowerSwitchSingleDevice::updateDimLevelIndicator,   this, std::placeholders::_1));
-	//connectedToDeviceSignal = true;
-	//deviceSignalConnect();
 
 	// Update appearence
 	setSliderParams(0, newDeviceDPSI->getDimLevelMax(), 1);

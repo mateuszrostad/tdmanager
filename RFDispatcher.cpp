@@ -13,43 +13,24 @@ bool RFDispatcher::terminateFlag = false;
 
 
 RFDispatcher::RFDispatcher()
-{
-	//running = false;
-	//tdInit();
-}
+{}
 
 
 RFDispatcher::~RFDispatcher()
-{
-	//freeDevices();
-	//tdClose();
-}
+{}
 
 	
 void RFDispatcher::registerDevice(Device* device, int codeId)
 {
 	//mtx.lock();
-	//_device->setRFDispatcher(this);
-	//_device->setDeviceId(deviceVector.size()); // This should be moved out
 	deviceMap[device->getId()] = DeviceData(device, codeId);
-	//deviceVector.emplace_back(_device, codeId);
 	commandQueue[device->getId()] = DeviceCommandQueue();
 	//mtx.unlock();
 }
 	
 
-/*
-void RFDispatcher::freeDevices()
-{
-	for (DeviceVector::iterator it = deviceVector.begin(); it != deviceVector.end(); ++it)
-		delete it->device;
-}
-*/
-
-
 void RFDispatcher::runThread()
 {
-	//std::thread newThread(run);
 	std::thread thr(&RFDispatcher::run, this);
 }
 
@@ -83,7 +64,6 @@ void RFDispatcher::run()
 				//mtx.unlock();
 			}
 		}
-		//std::cout << "RFDispatcher::run() usleep(1e6)" << std::endl;
 		usleep(100e3);
 	}
 }

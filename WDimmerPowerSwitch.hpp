@@ -60,8 +60,6 @@ private:
  * class WDimmerPowerSwitchSingleDevice
  */
 
-//class DeviceDimmerPowerSwitch;
-
 class WDimmerPowerSwitchSingleDevice : public WDimmerPowerSwitch
 {
 
@@ -78,9 +76,6 @@ public:
 
 	void setDevice(Device::DeviceId);
 	void removeDevice();
-	//void setDevice(DevicePowerSwitch*); // Unsafe
-	//DeviceDimmerPowerSwitch* getDevice();
-	//bool deviceIdIsValid();
 	bool             getDeviceIsSet() {return deviceIsSet;}
 	Device::DeviceId getDeviceId()    {return deviceId;}
 
@@ -95,9 +90,6 @@ protected:
 	
 	int              slotIdPowerState, slotIdDimLevel, slotIdBeforeDelete;
 	
-	//void deviceSignalConnect();
-	//void deviceSignalDisconnect();
-
 };
 
 

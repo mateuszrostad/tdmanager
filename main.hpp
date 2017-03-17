@@ -11,14 +11,7 @@ namespace Wt
 }
 
 class Device;
-//typedef std::vector<Device*> DeviceListType; // //
 const char* deviceStateFileName = "device-state-log";
-
-//Device* addDevice(Device*);
-//void    istreamDevices(std::istream&);
-//void    ostreamDevices(std::ostream&);
-//void    freeDevices();
-
 
 void              makeDevices();
 void              registerDevicesWithRFDispatcher();

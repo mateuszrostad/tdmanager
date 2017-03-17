@@ -1,4 +1,3 @@
-//#include "Device.hpp"
 #include "WPowerSwitch.hpp"
 #include <iostream>
 #include <cstdlib> // exit, EXIT_FAILURE
@@ -11,14 +10,13 @@
 #include <Wt/WPushButton>
 #include <Wt/WText>
 #include <Wt/WString>
-//#include <Wt/WLength>
 #include <Wt/WBreak>
 
 
 /*******************************************************************************
  * class WPowerSwitch
  */
-
+ 
 WPowerSwitch::WPowerSwitch(Wt::WString title, Style style, Wt::WContainerWidget* parent) :
 Wt::WContainerWidget(parent), buttonOnActive(false), buttonOffActive(false), buttonOn(nullptr), buttonOff(nullptr)
 {
@@ -57,9 +55,6 @@ Wt::WContainerWidget(parent), buttonOnActive(false), buttonOffActive(false), but
 	buttonOn->setStyleClass("wpowerswitch_buttonOn" + additionalStyling);
 	buttonOn->clicked().connect(this, &WPowerSwitch::buttonOn_clicked);
 	layout->addWidget(buttonOn);
-
-	//if (powerState == DevicePowerSwitch::Off || powerState == DevicePowerSwitch::On)
-	//	updatePowerStateIndicator(powerState);
 }
 
 
@@ -151,17 +146,9 @@ WPowerSwitchSingleDevice(title, style, parent)
 }
 
 
-// WPowerSwitchSingleDevice::WPowerSwitchSingleDevice(DevicePowerSwitch* device, Wt::WString title, Style style, Wt::WContainerWidget* parent) :
-// WPowerSwitchSingleDevice(title, style, parent)
-// {
-	// setDevice(device);
-// }
-
-
 WPowerSwitchSingleDevice::~WPowerSwitchSingleDevice()
 {
 	removeDevice();
-	//deviceSignalDisconnect();
 }
 
 
@@ -196,8 +183,6 @@ void WPowerSwitchSingleDevice::setDevice(Device::DeviceId newDeviceId)
 	// Connect to device signals
 	slotIdBeforeDelete = newDevice   ->beforeDelete()     .connect(Wt::WApplication::instance(), std::bind(&WPowerSwitchSingleDevice::removeDevice,              this));
 	slotIdPowerState   = newDevicePSI->powerStateUpdated().connect(Wt::WApplication::instance(), std::bind(&WPowerSwitchSingleDevice::updatePowerStateIndicator, this, std::placeholders::_1));
-	//connectedToDeviceSignal = true;
-	//deviceSignalConnect();
 
 	// Update appearence
 	updatePowerStateIndicator(newDevicePSI->getPowerState());
@@ -216,29 +201,6 @@ void WPowerSwitchSingleDevice::removeDevice()
 		deviceIsSet = false;
 	}
 }
-
-
-// void WPowerSwitchSingleDevice::setDevice(DevicePowerSwitch* device)
-// {
-	// deviceSignalDisconnect();
-	// registeredDeviceId = device->getId();
-	// deviceIsSet = true;
-	// deviceSignalConnect();
-	// updatePowerStateIndicator(device->getPowerState());
-// }
-
-
-// DevicePowerSwitch* WPowerSwitchSingleDevice::getDevice()
-// {
-	// DevicePowerSwitch* device = nullptr;
-	// if      (!deviceIsSet)
-		// std::cout << "WPowerSwitchSingleDevice::getDevice(): Cannot get device pointer. Device not set." << std::endl;
-	// else if (!deviceIdIsValid())
-		// std::cout << "WPowerSwitchSingleDevice::getDevice(): Cannot get device pointer. Current device id " << deviceId << " is invalid." << std::endl;
-	// else if ((device = dynamic_cast<DevicePowerSwitch*>(Device::getDevice(deviceId))) == nullptr)
-		// std::cout << "WPowerSwitchSingleDevice::getDevice(): Cannot get device pointer. Device pointer cannot be dynamically cast to DevicePowerSwitch*." << std::endl;
-	// return device;
-// }
 
 
 void WPowerSwitchSingleDevice::buttonOn_clicked()
@@ -292,31 +254,10 @@ WPowerSwitch(title, style, parent)
 {}
 
 
-// WPowerSwitchDeviceGroup::WPowerSwitchDeviceGroup(DeviceIds _devicesIds, Wt::WString title, Style style, Wt::WContainerWidget* parent) :
-// WPowerSwitchDeviceGroup(title, style, parent)
-// {
-	// for (auto deviceId : _devicesIds)
-		// addDevice(*deviceId);
-// }
-
-
 WPowerSwitchDeviceGroup::~WPowerSwitchDeviceGroup()
 {
 	removeAllDevices();
 }
-
-// WPowerSwitchDeviceGroup::WPowerSwitchDeviceGroup(DeviceIdListType ids, Wt::WString title, Style style, Wt::WContainerWidget* parent) :
-// WPowerSwitch(title, style, parent)
-// {
-//	Add devices here
-// }
-
-
-// void WPowerSwitchDeviceGroup::addDevice(DevicePowerSwitch* _device)
-// {
-	// devicesStue.push_back(DevicePowerSwitch_cast(_devices[i]));
-// }
-
 
 void WPowerSwitchDeviceGroup::addDevice(Device::DeviceId newDeviceId)
 {
@@ -346,12 +287,6 @@ void WPowerSwitchDeviceGroup::addDevice(Device::DeviceId newDeviceId)
 
 	deviceMap[newDeviceId] = newDevice->beforeDelete().connect(Wt::WApplication::instance(), std::bind(&WPowerSwitchDeviceGroup::removeDevice, this, newDeviceId));
 }
-
-
-// void WPowerSwitchDeviceGroup::removeDevice(DevicePowerSwitch* _device)
-// {
-//	
-// }
 
 
 void WPowerSwitchDeviceGroup::removeDevice(Device::DeviceId deviceId)

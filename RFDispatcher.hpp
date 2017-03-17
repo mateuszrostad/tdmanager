@@ -8,7 +8,6 @@
 #include "Device.hpp"
 
 
-//class  Device;
 struct DeviceData;
 struct CommandData;
 
@@ -32,13 +31,10 @@ public:
 	static RFDispatcher* getInstance();
 	static void free();
 	
-	//typedef std::vector<Device*> DeviceListType;
-
 	RFDispatcher();
 	~RFDispatcher();
 	
 	void registerDevice(Device*, int);
-	//void freeDevices(); // Obsolete, should not be done here
 	void runThread();
 	void run();
 	

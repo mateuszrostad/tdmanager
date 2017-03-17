@@ -46,7 +46,6 @@ struct Factory
 	template <typename ...Args>
 	static Manufacturable* make(Key key, Args... args)
 	{
-		//std::cout << key << " " << sizeof...(args) << std::endl;
 		return Map<Args...>::get()[key](args...);
 	}
 
@@ -63,7 +62,6 @@ private:
 	
 	static Manufacturable* make(Args ...args)
 	{
-		//std::cout << "FactoryRegistrar::make(...) " << std::endl;
 		return new T(args...);
 	}
 
