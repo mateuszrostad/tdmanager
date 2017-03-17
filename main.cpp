@@ -9,7 +9,7 @@
 #include <telldus-core.h>
 #include "Factory.hpp"
 #include "ConfigLoader.hpp"
-#include "LocalDevices.hpp"
+#include "Device.hpp"
 #include "RFDispatcher.hpp"
 #include "WebApp.hpp"
 #include "RawEventHandler.hpp"
@@ -86,37 +86,42 @@ int main(int argc, char** argv)
 
 void makeDevices()
 {
-	Factory::Key     factoryKey;
-	Device::DeviceId deviceId;
-	StateStrVec      paramStrVec;
+	XMLElement* xmlDeviceFactory = ConfigLoader::getInstance()->getRootElement("DeviceFactory");
 
-	XMLElement* xmlDeviceFactory = ConfigLoader::getInstance()->getRootElementDeviceFactory();
-
-	for (XMLElement* xmlInstance = xmlDeviceFactory->FirstChildElement("Instance"); xmlInstance != nullptr; xmlInstance = xmlDeviceFactory->NextSiblingElement("Instance"))
+	for (XMLElement* xmlDevice = xmlDeviceFactory->FirstChildElement("Device"); xmlDevice != nullptr; xmlDevice = xmlDevice->NextSiblingElement("Device"))
 	{
-		// Terminate if parser fails, indicating a faulty xml config file
-		if (ConfigLoader::parseInstance(*xmlInstance, &factoryKey, &deviceId, &paramStrVec))
-			Factory::make(factoryKey, deviceId, paramStrVec);
-		else
-			exit(EXIT_FAILURE);
+		ConfigLoader::validateElement(*xmlDevice, "Device", {"factorykey", "id", "name", "location"}, true, true);
+
+		Factory::Key     factoryKey = xmlDevice.Attribute("factorykey");
+		Device::DeviceId deviceId   = std::stoi(xmlDevice.Attribute("id"));
+		StateStrVec      paramStrVec;
+		for (const XMLElement* xmlStateParam = xmlDevice->FirstChildElement("StateParam"); xmlStateParam != nullptr; xmlStateParam = xmlStateParam->NextSiblingElement("StateParam"))
+		{
+			ConfigLoader::validateElement(*xmlStateParam, "StateParam", {"value"}, true, true);
+			paramStrVec.push_back(xmlStateParam->Attribute("value"));
+		}
+
+		Factory::make(factoryKey, deviceId, paramStrVec);
+
+		Device::getDevice(deviceId)->setName(    xmlDevice->Attribute("name"));
+		Device::getDevice(deviceId)->setLocation(xmlDevice->Attribute("location"));
 	}
 }
 
 
 void registerDevicesWithRFDispatcher()
 {
-	Device::DeviceId deviceId;
-	int codeId;
 	
-	XMLElement* xmlRFDispatcher = ConfigLoader::getInstance()->getRootElementRFDispatcher();
+	XMLElement* xmlRFDispatcher = ConfigLoader::getInstance()->getRootElement("RFDispatcher");
 
-	for (XMLElement* xmlRegisteredDevice = xmlRFDispatcher->FirstChildElement("RegisteredDevice"); xmlRegisteredDevice != nullptr; xmlRegisteredDevice = xmlRFDispatcher->NextSiblingElement("RegisteredDevice"))
+	for (XMLElement* xmlDevice = xmlRFDispatcher->FirstChildElement("RegisteredDevice"); xmlDevice != nullptr; xmlDevice = xmlDevice->NextSiblingElement("RegisteredDevice"))
 	{
-		// Terminate if parser fails, indicating a faulty xml config file
-		if (ConfigLoader::parseRegisteredDevice(*xmlRegisteredDevice, &deviceId, &codeId))
-			RFDispatcher::getInstance()->registerDevice(Device::getDevice(deviceId), codeId);
-		else
-			exit(EXIT_FAILURE);
+		ConfigLoader::validateElement(*xmlDevice, "RegisteredDevice", {"deviceid", "codeid"}, true, true);
+		
+		Device::DeviceId deviceId = std::stoi(xmlDevice->Attribute("deviceid"));
+		int codeId                = std::stoi(xmlDevice->Attribute("codeid"));
+		
+		RFDispatcher::getInstance()->registerDevice(Device::getDevice(deviceId), codeId);
 	}
 }
 
@@ -178,6 +183,8 @@ void interruptFunction(int sig)
 	RFDispatcher::setTerminateFlag();
 }
 
+
+#include "LocalDevices.hpp" // For rawEventCallback, TODO: restrict local usage to Device.hpp only when rawEventCallback is implemented separately
 
 void rawEventCallback(const char* data, int controllerId, int callbackId, void* context)
 {

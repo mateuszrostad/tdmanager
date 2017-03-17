@@ -1,5 +1,4 @@
 #include "ConfigLoader.hpp"
-#include <cstring>
 
 
 ConfigLoader* ConfigLoader::instance = nullptr;
@@ -21,41 +20,6 @@ ConfigLoader::ConfigLoader(const char* xmlfilename)
 
 
 ConfigLoader::~ConfigLoader() {}
-
-
-bool ConfigLoader::parseInstance(const XMLElement& xmlElement, Factory::Key* factoryKey, Device::DeviceId* deviceId, StateStrVec* paramStrVec)
-{
-	if (!validateElement(xmlElement, "Instance", {"factorykey", "deviceid"}))
-		return false;
-	
-	*factoryKey = (Factory::Key)     xmlElement.Attribute("factorykey");
-	*deviceId   = (Device::DeviceId) std::stoi(xmlElement.Attribute("deviceid")); 
-
-	paramStrVec->clear();
-	for (const XMLElement* xmlStateParam = xmlElement.FirstChildElement("StateParam"); xmlStateParam != nullptr; xmlStateParam = xmlStateParam->NextSiblingElement("StateParam"))
-		paramStrVec->push_back(getStateParam(*xmlStateParam));
-	
-	return true;
-}
-
-
-bool ConfigLoader::parseRegisteredDevice(const XMLElement& xmlElement, Device::DeviceId* deviceId, int* codeId)
-{
-	if (!validateElement(xmlElement, "RegisteredDevice", {"deviceid", "codeid"}))
-		return false;
-
-	*deviceId = (Device::DeviceId) std::stoi(xmlElement.Attribute("deviceid")); 
-	*codeId   =                    std::stoi(xmlElement.Attribute("codeid")); 
-	
-	return true;
-}
-
-
-std::string ConfigLoader::getStateParam(const XMLElement& xmlElement)
-{
-	validateElement(xmlElement, "StateParam", {"value"}, true, true);
-	return xmlElement->Attribute("value");
-}
 
 
 XMLElement* ConfigLoader::getRootElement(const std::string& elementName)

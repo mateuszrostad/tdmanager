@@ -5,6 +5,7 @@
 //#include <set>
 #include <map>
 #include <Wt/WContainerWidget>
+#include "ConfigLoader.hpp"
 
 namespace Wt
 {
@@ -62,6 +63,10 @@ class WPowerSwitchSingleDevice : public WPowerSwitch
 
 public:
 
+	static WPowerSwitchSingleDevice* parseXML(XMLElement*);
+
+public:
+
 	WPowerSwitchSingleDevice(                  Wt::WString, Style style = Body, Wt::WContainerWidget* parent = 0);
 	WPowerSwitchSingleDevice(Device::DeviceId, Wt::WString, Style style = Body, Wt::WContainerWidget* parent = 0);
 	//WPowerSwitchSingleDevice(DevicePowerSwitch*, Wt::WString, Style style = Body, Wt::WContainerWidget* parent = 0); // Unsafe
@@ -95,7 +100,11 @@ protected:
 
 class WPowerSwitchDeviceGroup : public WPowerSwitch
 {
+	
+public:
 
+	static WPowerSwitchDeviceGroup* parseXML(XMLElement*);
+	
 public:
 
 	//typedef Device::GenericDeviceMap<DevicePowerSwitch*> DeviceMap;

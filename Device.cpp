@@ -3,6 +3,7 @@
 //#include <cctype> // isspace()
 //#include <cstdio> // EOF
 #include <cstdlib> // exit, EXIT_FAILURE
+#include <cstring> // stoi
 #include "RFDispatcher.hpp"
 
 //#include "SessionsContainer.hpp"
@@ -26,7 +27,7 @@
 Device::DeviceMap Device::deviceMap;
 
 
-// Public interface
+// Static interface
 
 bool Device::isValid(DeviceId id)
 {
@@ -67,8 +68,24 @@ void Device::freeAllDevices()
 }
 
 
+DeviceActuator Device::getDeviceActuatorFromXML(XMLElement* xmlElement)
+{
+	ConfigLoader::validateElement(*xmlElement, "Actuator", {"deviceid"}, true, true);
+	
+	StateStrVec paramStrVec;
+	for (const XMLElement* xmlStateParam = xmlElement->FirstChildElement("StateParam"); xmlStateParam != nullptr; xmlStateParam = xmlStateParam->NextSiblingElement("StateParam"))
+	{
+		ConfigLoader::validateElement(*xmlStateParam, "StateParam", {"value"}, true, true);
+		paramStrVec.push_back(xmlStateParam->Attribute("value"));
+	}
+
+	Device::DeviceId id = std::stoi(xmlActuator.Attribute("id"));
+	return Device::getDevice(id)->getActuator(paramStrVec);
+}
+
+
 // Constructor
-Device::Device(DeviceId id) : deviceId(id) //, rfDispatcher(NULL)
+Device::Device(DeviceId id) : deviceId(id), name(""), location("") //, rfDispatcher(NULL)
 {
 	if (!isValid(id))
 		deviceMap[id] = this;

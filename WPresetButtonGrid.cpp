@@ -4,6 +4,19 @@
 #include "Device.hpp"
 
 
+WPresetButtonGrid* WPresetButtonGrid::parseXML(XMLElement* xmlElement)
+{
+	// No need for validation of xmlElement, contains no attributes
+	
+	WPresetButtonGrid* presetGrid = new WPresetButtonGrid();
+
+	for (XMLElement* xmlButton = xmlElement->FirstChildElement("PresetButton"); xmlButton != nullptr; xmlButton = xmlButton->NextSiblingElement("PresetButton"))
+		presetGrid->addButton(WPresetButton::parseXML(xmlButton));
+
+	return presetGrid;
+}
+
+
 WPresetButtonGrid::WPresetButtonGrid(Wt::WContainerWidget* parent) : Wt::WContainerWidget(parent), rowCurrent(0), colCurrent(0)
 {
 
@@ -35,6 +48,19 @@ void WPresetButtonGrid::addButton(WPresetButton* button)
 
 
 // WPresetButton implementation
+
+WPresetButton* WPresetButton::parseXML(XMLElement* xmlElement)
+{
+	ConfigLoader::validateElement(*xmlElement, "PresetButton", {"string"}, true, true);
+
+	WPresetButton* presetButton = new WPresetButton(xmlElement->Attribute("string"));
+
+	for (XMLElement* xmlActuator = xmlElement->FirstChildElement("Actuator"); xmlActuator != nullptr; xmlActuator = xmlActuator->NextSiblingElement("Actuator"))
+		presetButton->addActuator(Device::getDeviceActuatorFromXML(xmlActuator));
+
+	return presetButton;
+}
+
 
 WPresetButton::WPresetButton(const Wt::WString& title, Wt::WContainerWidget* parent) : WPushButton(title, parent)
 {

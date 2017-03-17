@@ -5,9 +5,11 @@
 #include <vector>
 #include <map>
 #include <functional>
+#include <string>
 #include "State.hpp"
 #include "Factory.hpp"
 #include "SimpleSignal.hpp"
+#include "ConfigLoader.hpp"
 
 
 #define FORCEDEFAULT false
@@ -37,7 +39,7 @@ typedef std::vector<DeviceActuator> DeviceActuatorList;
 class Device : public Manufacturable {
 
 public:    // typedefs
-	using DeviceId         = int;
+	using DeviceId         = int; // TODO: Rename typedef DeviceId to just Id
 	template <class DeviceT>
 	using GenericDeviceMap = std::map<DeviceId, DeviceT>;
     using DeviceMap        = GenericDeviceMap<Device*>;
@@ -52,12 +54,14 @@ public:    // Static interface
 	static Device*          getDevice(DeviceId);
     static void             freeDevice(DeviceId);
     static void             freeAllDevices();
+	static DeviceActuator   getDeviceActuatorFromXML(XMLElement*);
 
 
 private:   // Member vars
     DeviceId         deviceId;
 	SignalSessions<> beforeDeleteSignal;
     //RFDispatcher* rfDispatcher;
+	std::string      name, location; // TODO: implement these vars and their setter and getter funcs in a location manager rather than here
 	
 public:    // Public interface
 
@@ -71,7 +75,11 @@ public:    // Public interface
 	//void                             setRFDispatcher(RFDispatcher* _rfDispatcher) {rfDispatcher = _rfDispatcher;}
 	//void                             setRFDispatcher(RFDispatcher& _rfDispatcher) {rfDispatcher = &_rfDispatcher;}
 	//const RFDispatcher*              getRFDispatcher() {return rfDispatcher;}
-
+	void                             setName(const std::string& _name)         {name = _name;}
+	void                             setLocation(const std::string& _location) {location = _location;}
+	std::string                      getName()                                 {return name;}
+	std::string                      getLocation()                             {return location;}
+	
 	// Virtual interface
 	//virtual void                     setState(DerivedDeviceState& _state)=0;
 	//virtual DerivedDeviceState       getState()=0;

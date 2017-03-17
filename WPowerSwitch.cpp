@@ -2,6 +2,7 @@
 #include "WPowerSwitch.hpp"
 #include <iostream>
 #include <cstdlib> // exit, EXIT_FAILURE
+#include <cstring> // stoi
 #include <functional>
 #include <Wt/WApplication>
 #include <Wt/WHBoxLayout>
@@ -115,6 +116,22 @@ void WPowerSwitch::updatePowerStateIndicator(PowerSwitchInterface::PowerState ne
 /*******************************************************************************
  * class WPowerSwitchSingleDevice
  */
+
+WPowerSwitchSingleDevice* WPowerSwitchSingleDevice::parseXML(XMLElement* xmlElement)
+{
+	ConfigLoader::validateElement(*xmlElement, "PowerSwitchSingleDevice", {"deviceid", "style"}, true, true)
+
+	WPowerSwitchSingleDevice::Style style;
+	if      (std::strcmp(xmlElement->Attribute("style"), "Header"))
+		style = WPowerSwitchSingleDevice::Header;
+	else if (std::strcmp(xmlElement->Attribute("style"), "Body"))
+		style = WPowerSwitchSingleDevice::Body;
+
+	Device::DeviceId deviceId = std::stoi(xmlDevice->Attribute("deviceid"));
+
+	return new WPowerSwitchSingleDevice(deviceId, Device::getDevice(deviceId)->getName(), style));
+}
+
 
 WPowerSwitchSingleDevice::WPowerSwitchSingleDevice(                            Wt::WString title, Style style, Wt::WContainerWidget* parent) :
 WPowerSwitch(title, style, parent), deviceIsSet(false) //, connectedToDeviceSignal(false)
@@ -235,6 +252,28 @@ void WPowerSwitchSingleDevice::buttonOff_clicked()
 /*******************************************************************************
  * class WPowerSwitchDeviceGroup
  */
+
+WPowerSwitchDeviceGroup* WPowerSwitchDeviceGroup::parseXML(XMLElement* xmlElement)
+{
+	ConfigLoader::validateElement(*xmlElement, "PowerSwitchDeviceGroup", {"string", "style"}, true, true);
+	
+	WPowerSwitchDeviceGroup::Style style;
+	if      (std::strcmp(xmlElement->Attribute("style"), "Header"))
+		style = WPowerSwitchDeviceGroup::Header;
+	else if (std::strcmp(xmlElement->Attribute("style"), "Body"))
+		style = WPowerSwitchDeviceGroup::Body;
+
+	WPowerSwitchDeviceGroup* powerSwitchDeviceGroup = new WPowerSwitchDeviceGroup(xmlElement->Attribute("string"), style);
+
+	for (XMLElement* xmlDevice = xmlElement->FirstChildElement("Device"); xmlDevice != nullptr; xmlDevice = xmlDevice->NextSiblingElement("Device"))
+	{
+		ConfigLoader::validateElement(*xmlDevice, "Device", {"id"}, true, true);
+		powerSwitchDeviceGroup->addDevice(std::stoi(xmlDevice->Attribute("id")));
+	}
+
+	return powerSwitchDeviceGroup;
+}
+
 
 WPowerSwitchDeviceGroup::WPowerSwitchDeviceGroup(                       Wt::WString title, Style style, Wt::WContainerWidget* parent) :
 WPowerSwitch(title, style, parent)

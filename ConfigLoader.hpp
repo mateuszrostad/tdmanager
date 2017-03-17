@@ -33,15 +33,6 @@ public:
 	ConfigLoader(const char* xmlfilename = "config.xml");
 	~ConfigLoader();
 	
-	
-	XMLElement* getRootElementDeviceFactory() {return getRootElement("DeviceFactory");}
-	XMLElement* getRootElementRFDispatcher()  {return getRootElement("RFDispatcher");}
-	XMLElement* getRootElementWebApp()        {return getRootElement("WebApp");}
-
-	static bool parseInstance(        const XMLElement&, Factory::Key*, Device::DeviceId*, StateStrVec*);
-	static bool parseRegisteredDevice(const XMLElement&, Device::DeviceId*, int*);
-	static std::string& getStateParam(const XMLElement&);
-
 
 protected:
 	

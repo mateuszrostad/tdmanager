@@ -3,6 +3,7 @@
 
 #include <Wt/WContainerWidget>
 #include "BasicDevices.hpp"
+#include "ConfigLoader.hpp"
 
 namespace Wt
 {
@@ -63,6 +64,10 @@ private:
 
 class WDimmerPowerSwitchSingleDevice : public WDimmerPowerSwitch
 {
+
+public:
+
+	static WDimmerPowerSwitchSingleDevice* parseXML(XMLElement*);
 
 public:
 

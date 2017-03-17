@@ -4,6 +4,7 @@
 #include <Wt/WContainerWidget>
 #include <list>
 #include <vector>
+#include "ConfigLoader.hpp"
 
 namespace Wt
 {
@@ -17,6 +18,10 @@ class WPresetButton;
 class WPresetButtonGrid : public Wt::WContainerWidget
 {
 	
+public:
+
+	static WPresetButtonGrid* parseXML(XMLElement*);
+
 public:
 
 	WPresetButtonGrid(Wt::WContainerWidget* parent = 0);
@@ -44,6 +49,10 @@ namespace Wt
 class WPresetButton : public Wt::WPushButton
 {
 	
+public:
+	
+	static WPresetButton* parseXML(XMLElement* xmlElement);
+
 public:
 	
 	WPresetButton(const Wt::WString&, Wt::WContainerWidget* parent = 0);
