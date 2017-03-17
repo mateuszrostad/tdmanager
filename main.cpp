@@ -92,8 +92,8 @@ void makeDevices()
 	{
 		ConfigLoader::validateElement(*xmlDevice, "Device", {"factorykey", "id", "name", "location"}, true, true);
 
-		Factory::Key     factoryKey = xmlDevice.Attribute("factorykey");
-		Device::DeviceId deviceId   = std::stoi(xmlDevice.Attribute("id"));
+		Factory::Key     factoryKey = xmlDevice->Attribute("factorykey");
+		Device::DeviceId deviceId   = std::stoi(xmlDevice->Attribute("id"));
 		StateStrVec      paramStrVec;
 		for (const XMLElement* xmlStateParam = xmlDevice->FirstChildElement("StateParam"); xmlStateParam != nullptr; xmlStateParam = xmlStateParam->NextSiblingElement("StateParam"))
 		{

@@ -1,6 +1,7 @@
 #include "WDimmerPowerSwitch.hpp"
 #include <iostream>
-#include <cstring> // stoi
+#include <cstdlib> // exit, EXIT_FAILURE
+#include <cstring> // stoi, strcmp
 #include <Wt/WHBoxLayout>
 #include <Wt/WLength>
 #include <Wt/WContainerWidget>
@@ -181,17 +182,23 @@ void WDimmerPowerSwitch::setSliderParams(int dimValueMin, int dimValueMax, int d
 
 WDimmerPowerSwitchSingleDevice* WDimmerPowerSwitchSingleDevice::parseXML(XMLElement* xmlElement)
 {
-	ConfigLoader::validateElement(*xmlElement, "DimmerPowerSwitchSingleDevice", {"deviceid", "style"}, true, true)
+	ConfigLoader::validateElement(*xmlElement, "DimmerPowerSwitchSingleDevice", {"deviceid", "style"}, true, true);
 
-	WPowerSwitchSingleDevice::Style style;
-	if      (std::strcmp(xmlElement->Attribute("style"), "Header"))
-		style = WPowerSwitchSingleDevice::Header;
-	else if (std::strcmp(xmlElement->Attribute("style"), "Body"))
-		style = WPowerSwitchSingleDevice::Body;
+	WDimmerPowerSwitchSingleDevice::Style style;
+	const char* styleStr = xmlElement->Attribute("style");
+	if      (std::strcmp(styleStr, "Header") == 0)
+		style = WDimmerPowerSwitchSingleDevice::Header;
+	else if (std::strcmp(styleStr, "Body") == 0)
+		style = WDimmerPowerSwitchSingleDevice::Body;
+	else
+	{
+		std::cout << "WDimmerPowerSwitchSingleDevice::parseXML(...): Error: Element \"" << xmlElement->Name() << "\", attribute \"style\" has invalid value \"" << styleStr << "\"." << std::endl;
+		exit(EXIT_FAILURE);
+	}
 
-	Device::DeviceId deviceId = std::stoi(xmlDevice->Attribute("deviceid"));
+	Device::DeviceId deviceId = std::stoi(xmlElement->Attribute("deviceid"));
 
-	return new WDimmerPowerSwitchSingleDevice(deviceId, Device::getDevice(deviceId)->getName(), style));
+	return new WDimmerPowerSwitchSingleDevice(deviceId, Device::getDevice(deviceId)->getName(), style);
 }
 
 

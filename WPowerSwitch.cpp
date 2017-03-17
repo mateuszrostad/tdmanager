@@ -2,7 +2,7 @@
 #include "WPowerSwitch.hpp"
 #include <iostream>
 #include <cstdlib> // exit, EXIT_FAILURE
-#include <cstring> // stoi
+#include <cstring> // stoi, strcmp
 #include <functional>
 #include <Wt/WApplication>
 #include <Wt/WHBoxLayout>
@@ -119,17 +119,23 @@ void WPowerSwitch::updatePowerStateIndicator(PowerSwitchInterface::PowerState ne
 
 WPowerSwitchSingleDevice* WPowerSwitchSingleDevice::parseXML(XMLElement* xmlElement)
 {
-	ConfigLoader::validateElement(*xmlElement, "PowerSwitchSingleDevice", {"deviceid", "style"}, true, true)
+	ConfigLoader::validateElement(*xmlElement, "PowerSwitchSingleDevice", {"deviceid", "style"}, true, true);
 
 	WPowerSwitchSingleDevice::Style style;
-	if      (std::strcmp(xmlElement->Attribute("style"), "Header"))
+	const char* styleStr = xmlElement->Attribute("style");
+	if      (std::strcmp(styleStr, "Header") == 0)
 		style = WPowerSwitchSingleDevice::Header;
-	else if (std::strcmp(xmlElement->Attribute("style"), "Body"))
+	else if (std::strcmp(styleStr, "Body") == 0)
 		style = WPowerSwitchSingleDevice::Body;
+	else
+	{
+		std::cout << "WPowerSwitchSingleDevice::parseXML(...): Error: Element \"" << xmlElement->Name() << "\", attribute \"style\" has invalid value \"" << styleStr << "\"." << std::endl;
+		exit(EXIT_FAILURE);
+	}
 
-	Device::DeviceId deviceId = std::stoi(xmlDevice->Attribute("deviceid"));
+	Device::DeviceId deviceId = std::stoi(xmlElement->Attribute("deviceid"));
 
-	return new WPowerSwitchSingleDevice(deviceId, Device::getDevice(deviceId)->getName(), style));
+	return new WPowerSwitchSingleDevice(deviceId, Device::getDevice(deviceId)->getName(), style);
 }
 
 
@@ -258,10 +264,16 @@ WPowerSwitchDeviceGroup* WPowerSwitchDeviceGroup::parseXML(XMLElement* xmlElemen
 	ConfigLoader::validateElement(*xmlElement, "PowerSwitchDeviceGroup", {"string", "style"}, true, true);
 	
 	WPowerSwitchDeviceGroup::Style style;
-	if      (std::strcmp(xmlElement->Attribute("style"), "Header"))
+	const char* styleStr = xmlElement->Attribute("style");
+	if      (std::strcmp(styleStr, "Header") == 0)
 		style = WPowerSwitchDeviceGroup::Header;
-	else if (std::strcmp(xmlElement->Attribute("style"), "Body"))
+	else if (std::strcmp(styleStr, "Body") == 0)
 		style = WPowerSwitchDeviceGroup::Body;
+	else
+	{
+		std::cout << "WPowerSwitchDeviceGroup::parseXML(...): Error: Element \"" << xmlElement->Name() << "\", attribute \"style\" has invalid value \"" << styleStr << "\"." << std::endl;
+		exit(EXIT_FAILURE);
+	}
 
 	WPowerSwitchDeviceGroup* powerSwitchDeviceGroup = new WPowerSwitchDeviceGroup(xmlElement->Attribute("string"), style);
 

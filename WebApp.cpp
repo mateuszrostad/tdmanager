@@ -27,7 +27,7 @@
 
 Wt::WVBoxLayout* WebApp::getPanelLayoutFromXML(XMLElement* xmlPanel)
 {
-	ConfigLoader::validateElement(*xmlElement, "Panel", {"menuitemstring"}, true, true);
+	ConfigLoader::validateElement(*xmlPanel, "Panel", {"menuitemstring"}, true, true);
 
 	Wt::WVBoxLayout* layout = new Wt::WVBoxLayout();
 	
@@ -46,7 +46,7 @@ Wt::WVBoxLayout* WebApp::getPanelLayoutFromXML(XMLElement* xmlPanel)
 			layout->addWidget(WDimmerPowerSwitchSingleDevice::parseXML(xmlElement));
 
 		else if (ConfigLoader::elementIs(*xmlElement, "PresetButtonGrid"))
-			layout->addWidget(WDimmerPowerSwitchSingleDevice::parseXML(xmlElement));
+			layout->addWidget(WPresetButtonGrid::parseXML(xmlElement));
 
 		else if (ConfigLoader::elementIs(*xmlElement, "VerticalSpace"))
 		{
@@ -84,7 +84,7 @@ WebApp::WebApp(const Wt::WEnvironment& env) : Wt::WApplication(env)
 
 	//Experimental config loader
 	XMLElement* xmlWebApp = ConfigLoader::getInstance()->getRootElement("WebApp");
-	for (XMLElement* xmlElement = xmlWebApp->FirstChildElement(); xmlElement != nullptr; xmlElement = xmlWebApp->NextSiblingElement())
+	for (XMLElement* xmlElement = xmlWebApp->FirstChildElement(); xmlElement != nullptr; xmlElement = xmlElement->NextSiblingElement())
 	{
 		if (ConfigLoader::elementIs(*xmlElement, "Panel"))
 		{

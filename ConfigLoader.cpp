@@ -1,4 +1,5 @@
 #include "ConfigLoader.hpp"
+#include <cstring> // strcmp
 
 
 ConfigLoader* ConfigLoader::instance = nullptr;
@@ -32,7 +33,7 @@ XMLElement* ConfigLoader::getRootElement(const std::string& elementName)
 
 bool ConfigLoader::validateElement(const XMLElement& xmlElement, const std::string& name, const std::vector<std::string>& attributes, bool verbose, bool hard)
 {
-	if (!strcmp(xmlElement.Name(), name.c_str()))
+	if (std::strcmp(xmlElement.Name(), name.c_str()) != 0)
 	{
 		if (verbose)
 			std::cout << "ConfigLoader::validateElement(...): Error: Element name \"" << xmlElement.Name() << "\" does not match validation name \"" << name << "\"." << std::endl;

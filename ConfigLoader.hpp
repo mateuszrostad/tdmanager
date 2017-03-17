@@ -6,9 +6,9 @@
 #include <cstdlib>
 #include <vector>
 #include <string>
-#include "Factory.hpp"
-#include "Device.hpp"
-#include "State.hpp"
+//#include "Factory.hpp"
+//#include "Device.hpp"
+//#include "State.hpp"
 
 using namespace tinyxml2;
 
@@ -32,9 +32,6 @@ public:
 	
 	ConfigLoader(const char* xmlfilename = "config.xml");
 	~ConfigLoader();
-	
-
-protected:
 	
 	XMLElement* getRootElement(const std::string&);
 	static bool validateElement(const XMLElement&, const std::string&, const std::vector<std::string>& attributes, bool verbose = true, bool hard = false);

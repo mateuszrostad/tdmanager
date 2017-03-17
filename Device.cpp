@@ -5,6 +5,8 @@
 #include <cstdlib> // exit, EXIT_FAILURE
 #include <cstring> // stoi
 #include "RFDispatcher.hpp"
+#include "ConfigLoader.hpp"
+
 
 //#include "SessionsContainer.hpp"
 //#include "WebApp.hpp"
@@ -79,7 +81,7 @@ DeviceActuator Device::getDeviceActuatorFromXML(XMLElement* xmlElement)
 		paramStrVec.push_back(xmlStateParam->Attribute("value"));
 	}
 
-	Device::DeviceId id = std::stoi(xmlActuator.Attribute("id"));
+	Device::DeviceId id = std::stoi(xmlElement->Attribute("deviceid"));
 	return Device::getDevice(id)->getActuator(paramStrVec);
 }
 

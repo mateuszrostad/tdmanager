@@ -11,7 +11,6 @@
 #include "SimpleSignal.hpp"
 #include "ConfigLoader.hpp"
 
-
 #define FORCEDEFAULT false
 
 // Macro for registrating in class Factory a derived class of Device.
@@ -22,6 +21,7 @@ class DeviceType;\
 FactoryRegistrar<DeviceType, Device::DeviceId, StateStrVec> registrar_##DeviceType(#DeviceType);
 
 
+//class XMLElement;	
 //class Device;
 //class RFDispatcher;
 
