@@ -269,9 +269,6 @@ WPowerSwitchDeviceGroup::~WPowerSwitchDeviceGroup()
 
 void WPowerSwitchDeviceGroup::addDevice(Device::DeviceId newDeviceId)
 {
-	Device*               newDevice    = Device::getDevice(newDeviceId);
-	PowerSwitchInterface* newDevicePSI = dynamic_cast<PowerSwitchInterface*>(newDevice);
-	
 	// Validate new device id
 	if (!Device::isValid(newDeviceId))
 	{
@@ -279,6 +276,10 @@ void WPowerSwitchDeviceGroup::addDevice(Device::DeviceId newDeviceId)
 		//exit(EXIT_FAILURE); // TODO: use assert and throw signal, or use exceptions
 		return;
 	}
+
+	Device*               newDevice    = Device::getDevice(newDeviceId);
+	PowerSwitchInterface* newDevicePSI = dynamic_cast<PowerSwitchInterface*>(newDevice);
+	
 	if (newDevicePSI == nullptr)
 	{
 		std::cout << "WPowerSwitchDeviceGroup::setDevice(Device::DeviceId): Cannot add device. Device pointer cannot be dynamically cast to PowerSwitchInterface*. Device id " << newDeviceId << "." << std::endl;
