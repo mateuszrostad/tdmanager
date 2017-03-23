@@ -39,6 +39,7 @@ protected:
 
 
 #include <Wt/WPushButton>
+#include <Wt/WMouseEvent>
 #include "Device.hpp"
 
 namespace Wt
@@ -58,6 +59,7 @@ public:
 	WPresetButton(const Wt::WString&, Wt::WContainerWidget* parent = 0);
 	void addActuator(DeviceActuator);
 	void addActuator(DeviceActuatorList);
+	void mouseDown(const Wt::WMouseEvent&);
 	void actuate();
 
 protected:

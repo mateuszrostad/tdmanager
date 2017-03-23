@@ -65,7 +65,8 @@ WPresetButton* WPresetButton::parseXML(XMLElement* xmlElement)
 WPresetButton::WPresetButton(const Wt::WString& title, Wt::WContainerWidget* parent) : WPushButton(title, parent)
 {
 	setStyleClass("wpresetbuttongrid_button");
-	clicked().connect(this, &WPresetButton::actuate);
+	//clicked().connect(this, &WPresetButton::actuate);
+	mouseWentDown().connect(this, &WPresetButton::mouseDown);
 }
 
 
@@ -78,6 +79,30 @@ void WPresetButton::addActuator(DeviceActuator actuator)
 void WPresetButton::addActuator(DeviceActuatorList _actuators)
 {
 	actuators.insert(actuators.end(), _actuators.begin(), _actuators.end());
+}
+
+
+void mouseDown(const Wt::WMouseEvent& event)
+{
+	if (event.button() == Wt::WMouseEvent::LeftButton)
+	{
+		// Trivial example, do the same as WPushButton::clicked()
+		actuate();
+	}
+	
+	// TODO:
+	// Start new thread that sleeps for some time (e.g. 2 seconds)
+	// Thread, on wakeup, checks if button state still down.
+	//  If not: do nothing
+	//  If yes: set flag preventing actuate() from calling actuators (actuate() resets flag)
+	//          call some other action
+	//
+	// Alternatively:
+	// Start new thread that sleeps for some time (e.g. 2 seconds)
+	// When called, actuate() checks if thread is live and kills it,
+	//                        procedes calling actuators
+	// Thread, on wakeup (not killed by actuate) sets flag preventing actuate() from calling actuators (actuate() resets flag)
+	//         calls some other action
 }
 
 

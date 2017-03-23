@@ -75,7 +75,7 @@ WebApp::WebApp(const Wt::WEnvironment& env) : Wt::WApplication(env)
 	navBar->setMargin(4, Wt::Left | Wt::Right);
 	navBar->setMargin(12, Wt::Top | Wt::Bottom);
 
-	//Experimental config loader
+	// Load panels from xml config-file
 	XMLElement* xmlWebApp = ConfigLoader::getInstance()->getRootElement("WebApp");
 	for (XMLElement* xmlElement = xmlWebApp->FirstChildElement(); xmlElement != nullptr; xmlElement = xmlElement->NextSiblingElement())
 	{
