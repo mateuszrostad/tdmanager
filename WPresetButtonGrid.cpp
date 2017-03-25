@@ -49,6 +49,10 @@ void WPresetButtonGrid::addButton(WPresetButton* button)
 
 // WPresetButton implementation
 
+#include <thread>
+#include <chrono>
+#include <iostream>
+
 WPresetButton* WPresetButton::parseXML(XMLElement* xmlElement)
 {
 	ConfigLoader::validateElement(*xmlElement, "PresetButton", {"string"}, true, true);
@@ -62,11 +66,12 @@ WPresetButton* WPresetButton::parseXML(XMLElement* xmlElement)
 }
 
 
-WPresetButton::WPresetButton(const Wt::WString& title, Wt::WContainerWidget* parent) : WPushButton(title, parent)
+WPresetButton::WPresetButton(const Wt::WString& title, Wt::WContainerWidget* parent) : WPushButton(title, parent), _isDown(false), ignoreMouseButtonUp(false)
 {
 	setStyleClass("wpresetbuttongrid_button");
 	//clicked().connect(this, &WPresetButton::actuate);
-	mouseWentDown().connect(this, &WPresetButton::mouseDown);
+	mouseWentDown().connect(this, &WPresetButton::mouseButtonDown);
+	mouseWentUp().connect(this, &WPresetButton::mouseButtonUp);
 }
 
 
@@ -82,27 +87,52 @@ void WPresetButton::addActuator(DeviceActuatorList _actuators)
 }
 
 
-void mouseDown(const Wt::WMouseEvent& event)
+void WPresetButton::mouseButtonDown(const Wt::WMouseEvent& event)
 {
-	if (event.button() == Wt::WMouseEvent::LeftButton)
+	mtx.lock();
+	_isDown = true;
+	mtx.unlock();
+	
+	std::thread thr(&WPresetButton::whileMouseButtonDown, this);
+	thr.detach();
+}
+
+void WPresetButton::whileMouseButtonDown()
+{
+	std::this_thread::sleep_for(std::chrono::seconds(2));
+
+	mtx.lock();
+	if (isDown())
 	{
-		// Trivial example, do the same as WPushButton::clicked()
+		ignoreMouseButtonUp = true;
+		mtx.unlock();
 		actuate();
 	}
+	else
+		mtx.unlock();
+}
+
+
+void WPresetButton::mouseButtonUp(const Wt::WMouseEvent& event)
+{
+	mtx.lock();
+	_isDown = true;
+	mtx.unlock();
 	
-	// TODO:
-	// Start new thread that sleeps for some time (e.g. 2 seconds)
-	// Thread, on wakeup, checks if button state still down.
-	//  If not: do nothing
-	//  If yes: set flag preventing actuate() from calling actuators (actuate() resets flag)
-	//          call some other action
-	//
-	// Alternatively:
-	// Start new thread that sleeps for some time (e.g. 2 seconds)
-	// When called, actuate() checks if thread is live and kills it,
-	//                        procedes calling actuators
-	// Thread, on wakeup (not killed by actuate) sets flag preventing actuate() from calling actuators (actuate() resets flag)
-	//         calls some other action
+	if (event.button() == Wt::WMouseEvent::LeftButton)
+	{
+	mtx.lock();
+		if (ignoreMouseButtonUp)
+		{
+			ignoreMouseButtonUp = false;
+			mtx.unlock();
+		}
+		else
+		{
+			mtx.unlock();
+			actuate();
+		}
+	}
 }
 
 

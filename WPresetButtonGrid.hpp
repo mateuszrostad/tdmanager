@@ -38,8 +38,9 @@ protected:
 };
 
 
+#include <mutex>
 #include <Wt/WPushButton>
-#include <Wt/WMouseEvent>
+#include <Wt/WEvent>
 #include "Device.hpp"
 
 namespace Wt
@@ -59,13 +60,21 @@ public:
 	WPresetButton(const Wt::WString&, Wt::WContainerWidget* parent = 0);
 	void addActuator(DeviceActuator);
 	void addActuator(DeviceActuatorList);
-	void mouseDown(const Wt::WMouseEvent&);
 	void actuate();
+	
+	bool isDown() {return _isDown;}
 
 protected:
 	
 	DeviceActuatorList actuators;
+	bool _isDown;
+	bool ignoreMouseButtonUp;
+	std::recursive_mutex mtx;
 
+	
+	void mouseButtonDown(const Wt::WMouseEvent&);
+	void mouseButtonUp(const Wt::WMouseEvent&);
+	void whileMouseButtonDown();
 };
 
 
