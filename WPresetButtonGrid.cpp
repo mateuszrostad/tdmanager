@@ -49,9 +49,14 @@ void WPresetButtonGrid::addButton(WPresetButton* button)
 
 // WPresetButton implementation
 
-#include <thread>
-#include <chrono>
+//#include <thread>
+//#include <chrono>
 #include <iostream>
+#include <functional>
+#include <Wt/WDialog>
+#include <Wt/WLabel>
+#include <Wt/WTimer>
+
 
 WPresetButton* WPresetButton::parseXML(XMLElement* xmlElement)
 {
@@ -66,12 +71,23 @@ WPresetButton* WPresetButton::parseXML(XMLElement* xmlElement)
 }
 
 
-WPresetButton::WPresetButton(const Wt::WString& title, Wt::WContainerWidget* parent) : WPushButton(title, parent), _isDown(false), ignoreMouseButtonUp(false)
+WPresetButton::WPresetButton(const Wt::WString& title, Wt::WContainerWidget* parent) : WPushButton(title, parent), ignoreMouseButtonUp(false)
 {
 	setStyleClass("wpresetbuttongrid_button");
 	//clicked().connect(this, &WPresetButton::actuate);
 	mouseWentDown().connect(this, &WPresetButton::mouseButtonDown);
 	mouseWentUp().connect(this, &WPresetButton::mouseButtonUp);
+	
+	wtimer = new Wt::WTimer();
+	wtimer->setInterval(2000);
+	wtimer->setSingleShot(true);
+	wtimer->timeout().connect(this, &WPresetButton::longPressDialog);
+}
+
+
+WPresetButton::~WPresetButton()
+{
+	delete wtimer;
 }
 
 
@@ -89,47 +105,22 @@ void WPresetButton::addActuator(DeviceActuatorList _actuators)
 
 void WPresetButton::mouseButtonDown(const Wt::WMouseEvent& event)
 {
-	mtx.lock();
-	_isDown = true;
-	mtx.unlock();
-	
-	std::thread thr(&WPresetButton::whileMouseButtonDown, this);
-	thr.detach();
-}
-
-void WPresetButton::whileMouseButtonDown()
-{
-	std::this_thread::sleep_for(std::chrono::seconds(2));
-
-	mtx.lock();
-	if (isDown())
+	if (event.button() == Wt::WMouseEvent::LeftButton)
 	{
-		ignoreMouseButtonUp = true;
-		mtx.unlock();
-		actuate();
+		_isDown = true;
+		wtimer->start();
 	}
-	else
-		mtx.unlock();
 }
 
 
 void WPresetButton::mouseButtonUp(const Wt::WMouseEvent& event)
 {
-	mtx.lock();
-	_isDown = true;
-	mtx.unlock();
 	
 	if (event.button() == Wt::WMouseEvent::LeftButton)
 	{
-	mtx.lock();
-		if (ignoreMouseButtonUp)
+		if (wtimer->isActive())
 		{
-			ignoreMouseButtonUp = false;
-			mtx.unlock();
-		}
-		else
-		{
-			mtx.unlock();
+			wtimer->stop();
 			actuate();
 		}
 	}
@@ -141,3 +132,21 @@ void WPresetButton::actuate()
 	for (auto actuator : actuators)
 		actuator();
 }
+
+
+void WPresetButton::longPressDialog()
+{
+	Wt::WDialog* dialog = new Wt::WDialog("Edit button");
+	Wt::WLabel* label = new Wt::WLabel("Her kommer innhold", dialog->contents());
+	Wt::WPushButton* ok = new Wt::WPushButton("Ok", dialog->footer());
+	Wt::WPushButton* remove = new Wt::WPushButton("Remove", dialog->footer());
+	Wt::WPushButton* cancel = new Wt::WPushButton("Cancel", dialog->footer());
+	dialog->rejectWhenEscapePressed();
+	ok->clicked().connect(dialog, &Wt::WDialog::accept);
+	remove->clicked().connect(dialog, &Wt::WDialog::reject);
+	cancel->clicked().connect(dialog, &Wt::WDialog::reject);
+	dialog->finished().connect(std::bind([=](){delete dialog;}));
+	dialog->show();
+	ignoreMouseButtonUp = true;
+}
+

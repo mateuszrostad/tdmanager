@@ -40,12 +40,12 @@ protected:
 
 #include <mutex>
 #include <Wt/WPushButton>
-#include <Wt/WEvent>
 #include "Device.hpp"
 
 namespace Wt
 {
 	class WString;
+	class WTimer;
 }
 
 class WPresetButton : public Wt::WPushButton
@@ -58,23 +58,20 @@ public:
 public:
 	
 	WPresetButton(const Wt::WString&, Wt::WContainerWidget* parent = 0);
+	~WPresetButton();
 	void addActuator(DeviceActuator);
 	void addActuator(DeviceActuatorList);
 	void actuate();
 	
-	bool isDown() {return _isDown;}
-
 protected:
 	
+	Wt::WTimer* wtimer;
 	DeviceActuatorList actuators;
-	bool _isDown;
-	bool ignoreMouseButtonUp;
-	std::recursive_mutex mtx;
-
 	
 	void mouseButtonDown(const Wt::WMouseEvent&);
 	void mouseButtonUp(const Wt::WMouseEvent&);
-	void whileMouseButtonDown();
+	
+	void longPressDialog();
 };
 
 
