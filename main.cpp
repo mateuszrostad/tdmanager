@@ -217,13 +217,50 @@ void rawEventCallback(const char* data, int controllerId, int callbackId, void* 
 			
 			else if (eventData->group == 0 && eventData->unit == 9 && eventData->method == turnon)
 			{
+				DeviceNexaEYCR201_cast(         devices.at(0))->dim(2);
+			}
+			else if (eventData->group == 0 && eventData->unit == 9 && eventData->method == turnoff)
+			{
+				DeviceNexaEYCR201_cast(         devices.at(0))->dim(-2);
+			}
+
+			else if (eventData->group == 0 && eventData->unit == 10 && eventData->method == turnon)
+			{
+				DeviceEverflourishEMW200RA_cast(devices.at(1))->turnOn();
+			}
+			else if (eventData->group == 0 && eventData->unit == 10 && eventData->method == turnoff)
+			{
+				DeviceEverflourishEMW200RA_cast(devices.at(1))->turnOff();
+			}
+
+			else if (eventData->group == 0 && eventData->unit == 11 && eventData->method == turnon)
+			{
+				DeviceNexaEYCR201_cast(         devices.at(2))->dim(2);
+			}
+			else if (eventData->group == 0 && eventData->unit == 11 && eventData->method == turnoff)
+			{
+				DeviceNexaEYCR201_cast(         devices.at(2))->dim(-2);
+			}
+
+			else if (eventData->group == 0 && eventData->unit == 12 && eventData->method == turnon)
+			{
+				DeviceNexaEYCR201_cast(         devices.at(3))->dim(2);
+			}
+			else if (eventData->group == 0 && eventData->unit == 12 && eventData->method == turnoff)
+			{
+				DeviceNexaEYCR201_cast(         devices.at(3))->dim(-2);
+			}
+
+			
+			else if (eventData->group == 0 && eventData->unit == 13 && eventData->method == turnon)
+			{
 				DeviceNexaEYCR201_cast(         devices.at(0))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
 				DeviceEverflourishEMW200RA_cast(devices.at(1))->setState(DevicePowerSwitch      ::StateType{DevicePowerSwitch::On});
 				DeviceNexaEYCR201_cast(         devices.at(2))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
 				DeviceNexaEYCR201_cast(         devices.at(3))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
 			}
 
-			else if (eventData->group == 0 && eventData->unit == 9 && eventData->method == turnoff)
+			else if (eventData->group == 0 && eventData->unit == 13 && eventData->method == turnoff)
 			{
 				DeviceNexaEYCR201_cast(         devices.at(0))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 3});
 				DeviceEverflourishEMW200RA_cast(devices.at(1))->setState(DevicePowerSwitch      ::StateType{DevicePowerSwitch::Off});
