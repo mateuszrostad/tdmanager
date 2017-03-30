@@ -71,7 +71,7 @@ WPresetButton* WPresetButton::parseXML(XMLElement* xmlElement)
 }
 
 
-WPresetButton::WPresetButton(const Wt::WString& title, Wt::WContainerWidget* parent) : WPushButton(title, parent), ignoreMouseButtonUp(false)
+WPresetButton::WPresetButton(const Wt::WString& title, Wt::WContainerWidget* parent) : WPushButton(title, parent)
 {
 	setStyleClass("wpresetbuttongrid_button");
 	//clicked().connect(this, &WPresetButton::actuate);
@@ -107,7 +107,6 @@ void WPresetButton::mouseButtonDown(const Wt::WMouseEvent& event)
 {
 	if (event.button() == Wt::WMouseEvent::LeftButton)
 	{
-		_isDown = true;
 		wtimer->start();
 	}
 }
@@ -147,6 +146,5 @@ void WPresetButton::longPressDialog()
 	cancel->clicked().connect(dialog, &Wt::WDialog::reject);
 	dialog->finished().connect(std::bind([=](){delete dialog;}));
 	dialog->show();
-	ignoreMouseButtonUp = true;
 }
 
