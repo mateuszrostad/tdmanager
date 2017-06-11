@@ -1,31 +1,94 @@
 <DeviceDefinitions>
-    <Device id="0" class="DeviceNexaEYCR201" name="DimmerLamp" location="Room"/>
-    <Device id="1" class="DeviceEverflourishEMW200RA" name="OnOffLamp" location="Room"/>
+    <Device id="0" class="DeviceNexaEYCR201" name="Hjørnelampe" location="Stue"/>
+    <Device id="1" class="DeviceEverflourishEMW200RA" name="Leselampe" location="Stue"/>
+    <Device id="2" class="DeviceNexaEYCR201" name="Grasshopper-lampe" location="Stue"/>
+    <Device id="3" class="DeviceNexaEYCR201" name="Bordlampe" location="Stue"/>
+    <Device id="4" class="DeviceNexaEYCR201" name="Lampeskinne tak" location="Kjellerstue"/>
+    <Device id="5" class="DeviceNexaEYCR201" name="Gulvlamper forran" location="Kjellerstue"/>
+    <Device id="6" class="DeviceNexaEYCR201" name="Gulvlamper bak" location="Kjellerstue"/>
+    <Device id="7" class="DeviceNexaEYCR201" name="Leselampe" location="Kjellerstue"/>
+    <Device id="8" class="DeviceNexaEYCR201" name="Taklampe" location="Soverom 1"/>
+    <Device id="9" class="DeviceNexaEYCR201" name="Nattbordlampe innerst" location="Soverom 1"/>
+    <Device id="10" class="DeviceNexaEYCR201" name="Nattbordlampe ytterst" location="Soverom 1"/>
+    <Device id="11" class="DeviceNexaLGDR3500" name="Epletre underlys" location="Hage"/>
 </DeviceDefinitions>
 <DeviceFactory>
-	<Device factorykey="DeviceNexaEYCR201" id="0" name="DimmerLamp" location="Room">
+	<Device factorykey="DeviceNexaEYCR201" id="0" name="Hjørnelampe" location="Stue">
 		<StateParam value="1"/>
 		<StateParam value="10"/>
 	</Device>
-	<Device factorykey="DeviceEverflourishEMW200RA" id="1" name="OnOffLamp" location="Room">
+	<Device factorykey="DeviceEverflourishEMW200RA" id="1" name="Leselampe" location="Stue">
+		<StateParam value="1"/>
+	</Device>
+	<Device factorykey="DeviceNexaEYCR201" id="2" name="Grasshopper-lampe" location="Stue">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Device>
+	<Device factorykey="DeviceNexaEYCR201" id="3" name="Bordlampe" location="Stue">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Device>
+	<Device factorykey="DeviceNexaEYCR201" id="4" name="Lampeskinne tak" location="Kjellerstue">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Device>
+	<Device factorykey="DeviceNexaEYCR201" id="5" name="Gulvlamper forran" location="Kjellerstue">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Device>
+	<Device factorykey="DeviceNexaEYCR201" id="6" name="Gulvlamper bak" location="Kjellerstue">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Device>
+	<Device factorykey="DeviceNexaEYCR201" id="7" name="Leselampe" location="Kjellerstue">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Device>
+	<Device factorykey="DeviceNexaEYCR201" id="8" name="Taklampe" location="Soverom 1">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Device>
+	<Device factorykey="DeviceNexaEYCR201" id="9" name="Nattbordlampe innerst" location="Soverom 1">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Device>
+	<Device factorykey="DeviceNexaEYCR201" id="10" name="Nattbordlampe ytterst" location="Soverom 1">
+		<StateParam value="1"/>
+		<StateParam value="10"/>
+	</Device>
+	<Device factorykey="DeviceNexaLGDR3500" id="11" name="Epletre underlys" location="Hage">
 		<StateParam value="1"/>
 	</Device>
 </DeviceFactory>
 <RFDispatcher>
-	<RegisteredDevice deviceid="0" codeid="111"/>
-	<RegisteredDevice deviceid="1" codeid="222"/>
+	<RegisteredDevice deviceid="0" codeid="100"/>
+	<RegisteredDevice deviceid="1" codeid="101"/>
+	<RegisteredDevice deviceid="2" codeid="102"/>
+	<RegisteredDevice deviceid="3" codeid="103"/>
+	<RegisteredDevice deviceid="4" codeid="104"/>
+	<RegisteredDevice deviceid="5" codeid="105"/>
+	<RegisteredDevice deviceid="6" codeid="106"/>
+	<RegisteredDevice deviceid="7" codeid="107"/>
+	<RegisteredDevice deviceid="8" codeid="108"/>
+	<RegisteredDevice deviceid="9" codeid="109"/>
+	<RegisteredDevice deviceid="10" codeid="110"/>
+	<RegisteredDevice deviceid="11" codeid="111"/>
 </RFDispatcher>
 <WebApp>
-	<Panel menuitemstring="Room">
-		<PowerSwitchDeviceGroup string="All lamps" style="Header">
+	<Panel menuitemstring="Stue">
+		<PowerSwitchDeviceGroup string="Alle lamper" style="Header">
 			<Device id="0"/>
 			<Device id="1"/>
+			<Device id="2"/>
+			<Device id="3"/>
 		</PowerSwitchDeviceGroup>
 		<DimmerPowerSwitchSingleDevice deviceid="0" style="Body"/>
 		<PowerSwitchSingleDevice deviceid="1" style="Body"/>
+		<DimmerPowerSwitchSingleDevice deviceid="2" style="Body"/>
+		<DimmerPowerSwitchSingleDevice deviceid="3" style="Body"/>
 		<VerticalSpace/>
 		<PresetButtonGrid>
-			<PresetButton string="Normal">
+			<PresetButton string="Normalt lys">
 				<Actuator deviceid="0">
 					<StateParam value="1"/>
 					<StateParam value="10"/>
@@ -33,8 +96,16 @@
 				<Actuator deviceid="1">
 					<StateParam value="1"/>
 				</Actuator>
+				<Actuator deviceid="2">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="3">
+					<StateParam value="1"/>
+					<StateParam value="6"/>
+				</Actuator>
 			</PresetButton>
-			<PresetButton string="Full">
+			<PresetButton string="Flomlys">
 				<Actuator deviceid="0">
 					<StateParam value="1"/>
 					<StateParam value="15"/>
@@ -42,7 +113,254 @@
 				<Actuator deviceid="1">
 					<StateParam value="1"/>
 				</Actuator>
+				<Actuator deviceid="2">
+					<StateParam value="1"/>
+					<StateParam value="15"/>
+				</Actuator>
+				<Actuator deviceid="3">
+					<StateParam value="1"/>
+					<StateParam value="15"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Laveste dimming">
+				<Actuator deviceid="0">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="1">
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="2">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="3">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Ingen tilstede">
+				<Actuator deviceid="0">
+					<StateParam value="1"/>
+					<StateParam value="2"/>
+				</Actuator>
+				<Actuator deviceid="1">
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="2">
+					<StateParam value="1"/>
+					<StateParam value="2"/>
+				</Actuator>
+				<Actuator deviceid="3">
+					<StateParam value="1"/>
+					<StateParam value="2"/>
+				</Actuator>
 			</PresetButton>
 		</PresetButtonGrid>
+	</Panel>
+	<Panel menuitemstring="Kjellerstue">
+		<PowerSwitchDeviceGroup string="Alle lamper" style="Header">
+			<Device id="4"/>
+			<Device id="5"/>
+			<Device id="6"/>
+			<Device id="7"/>
+		</PowerSwitchDeviceGroup>
+		<DimmerPowerSwitchSingleDevice deviceid="4" style="Body"/>
+		<DimmerPowerSwitchSingleDevice deviceid="5" style="Body"/>
+		<DimmerPowerSwitchSingleDevice deviceid="6" style="Body"/>
+		<DimmerPowerSwitchSingleDevice deviceid="7" style="Body"/>
+		<VerticalSpace/>
+		<PresetButtonGrid>
+			<PresetButton string="Jevnt lys">
+				<Actuator deviceid="4">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="5">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="6">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="7">
+					<StateParam value="1"/>
+					<StateParam value="8"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Lavt lys">
+				<Actuator deviceid="4">
+					<StateParam value="0"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="5">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="6">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="7">
+					<StateParam value="1"/>
+					<StateParam value="8"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Kinolys">
+				<Actuator deviceid="4">
+					<StateParam value="1"/>
+					<StateParam value="5"/>
+				</Actuator>
+				<Actuator deviceid="5">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="6">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="7">
+					<StateParam value="0"/>
+					<StateParam value="1"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Laveste dimming">
+				<Actuator deviceid="4">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="5">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="6">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="7">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Flomlys">
+				<Actuator deviceid="4">
+					<StateParam value="1"/>
+					<StateParam value="15"/>
+				</Actuator>
+				<Actuator deviceid="5">
+					<StateParam value="1"/>
+					<StateParam value="15"/>
+				</Actuator>
+				<Actuator deviceid="6">
+					<StateParam value="1"/>
+					<StateParam value="15"/>
+				</Actuator>
+				<Actuator deviceid="7">
+					<StateParam value="1"/>
+					<StateParam value="15"/>
+				</Actuator>
+			</PresetButton>
+		</PresetButtonGrid>
+	</Panel>
+	<Panel menuitemstring="Hovedsoverom">
+		<PowerSwitchDeviceGroup string="Alle lamper" style="Header">
+			<Device id="8"/>
+			<Device id="9"/>
+			<Device id="10"/>
+		</PowerSwitchDeviceGroup>
+		<DimmerPowerSwitchSingleDevice deviceid="8" style="Body"/>
+		<DimmerPowerSwitchSingleDevice deviceid="9" style="Body"/>
+		<DimmerPowerSwitchSingleDevice deviceid="10" style="Body"/>
+		<VerticalSpace/>
+		<PresetButtonGrid>
+			<PresetButton string="Jevnt lys">
+				<Actuator deviceid="8">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="9">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="10">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Lavt lys">
+				<Actuator deviceid="8">
+					<StateParam value="1"/>
+					<StateParam value="5"/>
+				</Actuator>
+				<Actuator deviceid="9">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="10">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Høyt lys">
+				<Actuator deviceid="8">
+					<StateParam value="1"/>
+					<StateParam value="10"/>
+				</Actuator>
+				<Actuator deviceid="9">
+					<StateParam value="1"/>
+					<StateParam value="6"/>
+				</Actuator>
+				<Actuator deviceid="10">
+					<StateParam value="1"/>
+					<StateParam value="6"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Diskret">
+				<Actuator deviceid="8">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="9">
+					<StateParam value="1"/>
+					<StateParam value="1"/>
+				</Actuator>
+				<Actuator deviceid="10">
+					<StateParam value="1"/>
+					<StateParam value="1"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Laveste dimming">
+				<Actuator deviceid="8">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="9">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+				<Actuator deviceid="10">
+					<StateParam value="1"/>
+					<StateParam value="0"/>
+				</Actuator>
+			</PresetButton>
+			<PresetButton string="Flomlys">
+				<Actuator deviceid="8">
+					<StateParam value="1"/>
+					<StateParam value="15"/>
+				</Actuator>
+				<Actuator deviceid="9">
+					<StateParam value="1"/>
+					<StateParam value="15"/>
+				</Actuator>
+				<Actuator deviceid="10">
+					<StateParam value="1"/>
+					<StateParam value="15"/>
+				</Actuator>
+			</PresetButton>
+		</PresetButtonGrid>
+	</Panel>
+	<Panel menuitemstring="Hage">
+		<PowerSwitchSingleDevice deviceid="11" style="Body"/>
 	</Panel>
 </WebApp>

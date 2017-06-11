@@ -16,3 +16,11 @@ register_in_factory(DeviceEverflourishEMW200RA)
 
 // Register in Factory
 register_in_factory(DeviceNexaEYCR201)
+
+
+/*******************************************************************************
+ * class DeviceNexaLGDR3500
+ */
+
+// Register in Factory
+register_in_factory(DeviceNexaLGDR3500)
