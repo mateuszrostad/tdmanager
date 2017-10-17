@@ -29,4 +29,6 @@
 *.app
 tdmanager
 
+# Subdirectories and links
 scratch
+resources
