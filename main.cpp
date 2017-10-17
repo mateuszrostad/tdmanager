@@ -128,146 +128,175 @@ void rawEventCallback(const char* data, int controllerId, int callbackId, void* 
 
 			if      (eventData->group == 1 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(0))->turnOn();
-				DeviceEverflourishEMW200RA_cast(devices.at(1))->turnOn();
-				DeviceNexaEYCR201_cast(         devices.at(2))->turnOn();
-				DeviceNexaEYCR201_cast(         devices.at(3))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(4))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(5))->turnOn();
 			}
 			else if (eventData->group == 1 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(0))->turnOff();
-				DeviceEverflourishEMW200RA_cast(devices.at(1))->turnOff();
-				DeviceNexaEYCR201_cast(         devices.at(2))->turnOff();
-				DeviceNexaEYCR201_cast(         devices.at(3))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(4))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(5))->turnOff();
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 1 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(0))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->turnOn();
 			}
 			else if (eventData->group == 0 && eventData->unit == 1 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(0))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->turnOff();
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 2 && eventData->method == turnon)
 			{
-				DeviceEverflourishEMW200RA_cast(devices.at(1))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->turnOn();
 			}
 			else if (eventData->group == 0 && eventData->unit == 2 && eventData->method == turnoff)
 			{
-				DeviceEverflourishEMW200RA_cast(devices.at(1))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->turnOff();
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 3 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(2))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->turnOn();
 			}
 			else if (eventData->group == 0 && eventData->unit == 3 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(2))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->turnOff();
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 4 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(3))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->turnOn();
 			}
 			else if (eventData->group == 0 && eventData->unit == 4 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(3))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->turnOff();
 			}
 			
 
 			else if (eventData->group == 0 && eventData->unit == 5 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(0))->dim(1);
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->dim(1);
 			}
 			else if (eventData->group == 0 && eventData->unit == 5 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(0))->dim(-1);
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->dim(-1);
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 6 && eventData->method == turnon)
 			{
-				DeviceEverflourishEMW200RA_cast(devices.at(1))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->dim(1);
 			}
 			else if (eventData->group == 0 && eventData->unit == 6 && eventData->method == turnoff)
 			{
-				DeviceEverflourishEMW200RA_cast(devices.at(1))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->dim(-1);
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 7 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(2))->dim(1);
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->dim(1);
 			}
 			else if (eventData->group == 0 && eventData->unit == 7 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(2))->dim(-1);
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->dim(-1);
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 8 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(3))->dim(1);
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->dim(1);
 			}
 			else if (eventData->group == 0 && eventData->unit == 8 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(3))->dim(-1);
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->dim(-1);
 			}
 
 			
 			else if (eventData->group == 0 && eventData->unit == 9 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(0))->dim(2);
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->dim(2);
 			}
 			else if (eventData->group == 0 && eventData->unit == 9 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(0))->dim(-2);
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->dim(-2);
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 10 && eventData->method == turnon)
 			{
-				DeviceEverflourishEMW200RA_cast(devices.at(1))->turnOn();
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->dim(2);
 			}
 			else if (eventData->group == 0 && eventData->unit == 10 && eventData->method == turnoff)
 			{
-				DeviceEverflourishEMW200RA_cast(devices.at(1))->turnOff();
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->dim(2);
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 11 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(2))->dim(2);
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->dim(2);
 			}
 			else if (eventData->group == 0 && eventData->unit == 11 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(2))->dim(-2);
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->dim(-2);
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 12 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(3))->dim(2);
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->dim(2);
 			}
 			else if (eventData->group == 0 && eventData->unit == 12 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(3))->dim(-2);
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->dim(-2);
 			}
 
 			
 			else if (eventData->group == 0 && eventData->unit == 13 && eventData->method == turnon)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(0))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
-				DeviceEverflourishEMW200RA_cast(devices.at(1))->setState(DevicePowerSwitch      ::StateType{DevicePowerSwitch::On});
-				DeviceNexaEYCR201_cast(         devices.at(2))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
-				DeviceNexaEYCR201_cast(         devices.at(3))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 10});
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 10});
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 10});
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 6});
+				DeviceDimmerPowerSwitch_cast(devices.at(4))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 10});
+				DeviceDimmerPowerSwitch_cast(devices.at(5))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 10});
 			}
 
 			else if (eventData->group == 0 && eventData->unit == 13 && eventData->method == turnoff)
 			{
-				DeviceNexaEYCR201_cast(         devices.at(0))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 3});
-				DeviceEverflourishEMW200RA_cast(devices.at(1))->setState(DevicePowerSwitch      ::StateType{DevicePowerSwitch::Off});
-				DeviceNexaEYCR201_cast(         devices.at(2))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 3});
-				DeviceNexaEYCR201_cast(         devices.at(3))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 3});
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 3});
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::Off, 3});
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 3});
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 3});
+				DeviceDimmerPowerSwitch_cast(devices.at(4))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 3});
+				DeviceDimmerPowerSwitch_cast(devices.at(5))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 3});
+			}
+
+			else if (eventData->group == 0 && eventData->unit == 14 && eventData->method == turnon)
+			{
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
+				DeviceDimmerPowerSwitch_cast(devices.at(4))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
+				DeviceDimmerPowerSwitch_cast(devices.at(5))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 15});
+			}
+
+			else if (eventData->group == 0 && eventData->unit == 14 && eventData->method == turnoff)
+			{
+				DeviceDimmerPowerSwitch_cast(devices.at(0))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 0});
+				DeviceDimmerPowerSwitch_cast(devices.at(1))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 0});
+				DeviceDimmerPowerSwitch_cast(devices.at(2))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 0});
+				DeviceDimmerPowerSwitch_cast(devices.at(3))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 0});
+				DeviceDimmerPowerSwitch_cast(devices.at(4))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 0});
+				DeviceDimmerPowerSwitch_cast(devices.at(5))->setState(DeviceDimmerPowerSwitch::StateType{DevicePowerSwitch::On, 0});
 			}
 		}
+		
 		else // if (eventData->house == )
 		{
 			
