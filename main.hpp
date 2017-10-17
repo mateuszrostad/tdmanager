@@ -11,7 +11,6 @@ namespace Wt
 }
 
 class Device;
-const char* deviceStateFileName = "device-state-log";
 
 void              makeDevices();
 void              registerDevicesWithRFDispatcher();
