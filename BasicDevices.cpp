@@ -9,7 +9,10 @@
  * class DevicePowerSwitch
  */
 
-register_in_factory(DevicePowerSwitch)
+// There shouldn't be any actual need for registering DevicePowerSwitch with the device factory (all devices should
+// ideally be derived from Device or any of the basic device classes). But it doesn't hurt to do it anyway.
+register_device_in_factory(DevicePowerSwitch)
+
 
 // Funcs
 void DevicePowerSwitch::setState(const StateType& _state, bool force)
@@ -57,8 +60,14 @@ void DevicePowerSwitch::setPowerState(PowerState newPowerState, bool force)
  * class DeviceDimmerPowerSwitch
  */
 
-//register_in_factory(DeviceDimmerPowerSwitch)
-FactoryRegistrar<DeviceDimmerPowerSwitch, int, const DeviceDimmerPowerSwitch::HWDimValues&, const StateStrVec&> registrar_DeviceDimmerPowerSwitch("DeviceDimmerPowerSwitch");
+// Although there shouldn't be any actual need for registering DeviceDimmerPowerSwitch with the device factory
+// (all devices should ideally be derived from Device or any of the basic device classes), to accomplish this anyway,
+// we cannot use the registering macro defined in Device.hpp since that assumes the specific constructor signature
+// (int, const StateStrVec&). DeviceDimmerPowerSwitch costructor also requires const HWDimValues& as 2nd parameter.
+// The factory registrar must therefore be defined manually.
+//register_device_in_factory(DeviceDimmerPowerSwitch)
+//FactoryRegistrar<DeviceDimmerPowerSwitch, int, const DeviceDimmerPowerSwitch::HWDimValues&, const StateStrVec&> registrar_DeviceDimmerPowerSwitch("DeviceDimmerPowerSwitch");
+FactoryRegistrar<DeviceDimmerPowerSwitch, int, const DeviceDimmerPowerSwitch::HWDimValues&> registrar_DeviceDimmerPowerSwitch("DeviceDimmerPowerSwitch");
 
 
 // Funcs

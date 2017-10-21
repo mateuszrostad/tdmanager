@@ -18,7 +18,9 @@
 // <int, const stateStrVec&> (device id, state initialization string vector)
 #define register_device_in_factory(DeviceType)\
 class DeviceType;\
-FactoryRegistrar<DeviceType, Device::DeviceId, StateStrVec> registrar_##DeviceType(#DeviceType);
+FactoryRegistrar<DeviceType, Device::DeviceId> registrar_##DeviceType(#DeviceType);
+
+//FactoryRegistrar<DeviceType, Device::DeviceId, StateStrVec> registrar_##DeviceType(#DeviceType);
 
 
 typedef std::function<void(void)>   DeviceActuator;

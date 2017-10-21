@@ -78,12 +78,12 @@ void Device::setDeviceStateFromXML(XMLElement* xmlDevice)
 
 bool Device::checkXMLDeviceDefs()
 {
-	struct
+	struct XMLDevice
 	{
 		std::string _class;
 		std::string  name;
 		std::string  location;
-	} XMLDevice;
+	};
 
 	std::map<DeviceId, XMLDevice> xmlDeviceMap;
 
@@ -97,7 +97,7 @@ bool Device::checkXMLDeviceDefs()
 		ConfigLoader::validateElement(*xmlDeviceDef, "Device", {"id", "class", "name", "location"}, true, true);
 
 		DeviceId  id        = std::stoi(xmlDeviceDef->Attribute("id"));
-		XMLDevice xmlDevice = XMLDevice{xmlDeviceDev->Attribute("class"), xmlDeviceDev->Attribute("name"), xmlDeviceDev->Attribute("location")};
+		XMLDevice xmlDevice = XMLDevice{xmlDeviceDef->Attribute("class"), xmlDeviceDef->Attribute("name"), xmlDeviceDef->Attribute("location")};
 		if (deviceMap.count(id) == 0)
 		{
 			std::cout << "Device::checkXMLDeviceDefs(): In xml config document, device definition id " << id << " does not correspond to any Device instance." << std::endl;
@@ -126,10 +126,10 @@ bool Device::checkXMLDeviceDefs()
 	// Iterate through Device instance map, check against xml device def map
 	for (auto device : deviceMap)
 	{
-		DeviceId     id       = device->first();
-		std::string _class    = device->second()->getClass();
-		std::string  name     = device->second()->getName();
-		std::string  location = device->second()->getLocation();
+		DeviceId     id       = device.first;
+		std::string _class    = device.second->getClass();
+		std::string  name     = device.second->getName();
+		std::string  location = device.second->getLocation();
 
 		if (xmlDeviceMap.count(id) == 0)
 		{
@@ -216,7 +216,7 @@ void Device::parseDeviceStatesToXML()
 
 DeviceActuator Device::getDeviceActuatorFromXML(XMLElement* xmlDevice)
 {
-	ConfigLoader::validateElement(*xmlElement, "Device", {"id"}, true, true);
+	ConfigLoader::validateElement(*xmlDevice, "Device", {"id"}, true, true);
 	
 	StateStrVec stateStrVec;
 	for(XMLElement* xmlStateParam = xmlDevice->FirstChildElement("StateParam");

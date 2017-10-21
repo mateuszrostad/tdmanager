@@ -27,6 +27,7 @@ int main(int argc, char** argv)
 	
 	makeDevices();
 	registerDevicesWithRFDispatcher();
+	
 
 	tdInit();
 
@@ -58,13 +59,14 @@ void makeDevices()
 {
 	XMLElement* xmlDeviceDefinitions = ConfigLoader::getInstance()->getRootElement("DeviceDefinitions");
 	
+	
 	for(XMLElement* xmlDevice = xmlDeviceDefinitions->FirstChildElement("Device");
 		xmlDevice != nullptr;
 		xmlDevice             = xmlDevice->NextSiblingElement("Device"))
 	{
 		ConfigLoader::validateElement(*xmlDevice, "Device", {"id", "class", "name", "location"}, true, true);
-		
-		Factory::Key     factoryKey = xmlDevice->Attribute("factorykey");
+
+		Factory::Key     factoryKey = xmlDevice->Attribute("class");
 		Device::DeviceId deviceId   = std::stoi(xmlDevice->Attribute("id"));
 
 		Factory::make(factoryKey, deviceId);
@@ -75,16 +77,6 @@ void makeDevices()
 	}
 
 
-	XMLElement* xmlDeviceStateLog = ConfigLoader::getInstance()->getRootElement("DeviceStateLog");
-
-	for(XMLElement* xmlDevice = xmlDeviceStateLog->FirstChildElement("Device");
-		xmlDevice != nullptr;
-		xmlDevice             = xmlDevice->NextSiblingElement("Device"))
-	{
-		Device::setDeviceStateFromXML(xmlDevice);
-	}
-	
-	
 	// LEGACY BELOW //
 	/*
 	XMLElement* xmlDeviceFactory = ConfigLoader::getInstance()->getRootElement("DeviceFactory");
@@ -126,6 +118,19 @@ void registerDevicesWithRFDispatcher()
 		int              codeId   = std::stoi(xmlDevice->Attribute("codeid"));
 		
 		RFDispatcher::getInstance()->registerDevice(Device::getDevice(deviceId), codeId);
+	}
+}
+
+
+void restoreDeviceStates()
+{
+	XMLElement* xmlDeviceStateLog = ConfigLoader::getInstance()->getRootElement("DeviceStateLog");
+
+	for(XMLElement* xmlDevice = xmlDeviceStateLog->FirstChildElement("Device");
+		xmlDevice != nullptr;
+		xmlDevice             = xmlDevice->NextSiblingElement("Device"))
+	{
+		Device::setDeviceStateFromXML(xmlDevice);
 	}
 }
 
