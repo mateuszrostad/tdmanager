@@ -10,8 +10,13 @@ WPresetButtonGrid* WPresetButtonGrid::parseXML(XMLElement* xmlElement)
 	
 	WPresetButtonGrid* presetGrid = new WPresetButtonGrid();
 
-	for (XMLElement* xmlButton = xmlElement->FirstChildElement("PresetButton"); xmlButton != nullptr; xmlButton = xmlButton->NextSiblingElement("PresetButton"))
+
+	for(XMLElement* xmlButton = xmlElement->FirstChildElement("PresetButton");
+		xmlButton != nullptr;
+		xmlButton             = xmlButton->NextSiblingElement("PresetButton"))
+	{
 		presetGrid->addButton(WPresetButton::parseXML(xmlButton));
+	}
 
 	return presetGrid;
 }
@@ -64,8 +69,12 @@ WPresetButton* WPresetButton::parseXML(XMLElement* xmlElement)
 
 	WPresetButton* presetButton = new WPresetButton(xmlElement->Attribute("string"));
 
-	for (XMLElement* xmlActuator = xmlElement->FirstChildElement("Actuator"); xmlActuator != nullptr; xmlActuator = xmlActuator->NextSiblingElement("Actuator"))
-		presetButton->addActuator(Device::getDeviceActuatorFromXML(xmlActuator));
+	for(XMLElement* xmlDevice = xmlElement->FirstChildElement("Device");
+		xmlDevice != nullptr;
+		xmlDevice             = xmlDevice->NextSiblingElement("Device"))
+	{
+		presetButton->addActuator(Device::getDeviceActuatorFromXML(xmlDevice));
+	}
 
 	return presetButton;
 }

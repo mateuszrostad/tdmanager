@@ -7,7 +7,7 @@
  */
 
 // Register in Factory
-register_in_factory(DeviceEverflourishEMW200RA)
+register_device_in_factory(DeviceEverflourishEMW200RA)
 
 
 /*******************************************************************************
@@ -15,7 +15,7 @@ register_in_factory(DeviceEverflourishEMW200RA)
  */
 
 // Register in Factory
-register_in_factory(DeviceNexaEYCR201)
+register_device_in_factory(DeviceNexaEYCR201)
 
 
 /*******************************************************************************
@@ -23,4 +23,4 @@ register_in_factory(DeviceNexaEYCR201)
  */
 
 // Register in Factory
-register_in_factory(DeviceNexaLGDR3500)
+register_device_in_factory(DeviceNexaLGDR3500)

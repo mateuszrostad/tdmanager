@@ -239,9 +239,12 @@ WPowerSwitchDeviceGroup* WPowerSwitchDeviceGroup::parseXML(XMLElement* xmlElemen
 
 	WPowerSwitchDeviceGroup* powerSwitchDeviceGroup = new WPowerSwitchDeviceGroup(xmlElement->Attribute("string"), style);
 
-	for (XMLElement* xmlDevice = xmlElement->FirstChildElement("Device"); xmlDevice != nullptr; xmlDevice = xmlDevice->NextSiblingElement("Device"))
+	for(XMLElement* xmlDevice = xmlElement->FirstChildElement("Device");
+		xmlDevice != nullptr;
+		xmlDevice             = xmlDevice->NextSiblingElement("Device"))
 	{
 		ConfigLoader::validateElement(*xmlDevice, "Device", {"id"}, true, true);
+
 		powerSwitchDeviceGroup->addDevice(std::stoi(xmlDevice->Attribute("id")));
 	}
 

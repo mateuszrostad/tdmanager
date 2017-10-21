@@ -56,6 +56,37 @@ int main(int argc, char** argv)
 
 void makeDevices()
 {
+	XMLElement* xmlDeviceDefinitions = ConfigLoader::getInstance()->getRootElement("DeviceDefinitions");
+	
+	for(XMLElement* xmlDevice = xmlDeviceDefinitions->FirstChildElement("Device");
+		xmlDevice != nullptr;
+		xmlDevice             = xmlDevice->NextSiblingElement("Device"))
+	{
+		ConfigLoader::validateElement(*xmlDevice, "Device", {"id", "class", "name", "location"}, true, true);
+		
+		Factory::Key     factoryKey = xmlDevice->Attribute("factorykey");
+		Device::DeviceId deviceId   = std::stoi(xmlDevice->Attribute("id"));
+
+		Factory::make(factoryKey, deviceId);
+
+		Device::getDevice(deviceId)->setClass(   xmlDevice->Attribute("class"));
+		Device::getDevice(deviceId)->setName(    xmlDevice->Attribute("name"));
+		Device::getDevice(deviceId)->setLocation(xmlDevice->Attribute("location"));
+	}
+
+
+	XMLElement* xmlDeviceStateLog = ConfigLoader::getInstance()->getRootElement("DeviceStateLog");
+
+	for(XMLElement* xmlDevice = xmlDeviceStateLog->FirstChildElement("Device");
+		xmlDevice != nullptr;
+		xmlDevice             = xmlDevice->NextSiblingElement("Device"))
+	{
+		Device::setDeviceStateFromXML(xmlDevice);
+	}
+	
+	
+	// LEGACY BELOW //
+	/*
 	XMLElement* xmlDeviceFactory = ConfigLoader::getInstance()->getRootElement("DeviceFactory");
 
 	for (XMLElement* xmlDevice = xmlDeviceFactory->FirstChildElement("Device"); xmlDevice != nullptr; xmlDevice = xmlDevice->NextSiblingElement("Device"))
@@ -76,6 +107,7 @@ void makeDevices()
 		Device::getDevice(deviceId)->setName(    xmlDevice->Attribute("name"));
 		Device::getDevice(deviceId)->setLocation(xmlDevice->Attribute("location"));
 	}
+	*/
 }
 
 
@@ -84,18 +116,18 @@ void registerDevicesWithRFDispatcher()
 	
 	XMLElement* xmlRFDispatcher = ConfigLoader::getInstance()->getRootElement("RFDispatcher");
 
-	for (XMLElement* xmlDevice = xmlRFDispatcher->FirstChildElement("RegisteredDevice"); xmlDevice != nullptr; xmlDevice = xmlDevice->NextSiblingElement("RegisteredDevice"))
+	for(XMLElement* xmlDevice = xmlRFDispatcher->FirstChildElement("RegisteredDevice");
+		xmlDevice != nullptr;
+		xmlDevice             = xmlDevice->NextSiblingElement("RegisteredDevice"))
 	{
 		ConfigLoader::validateElement(*xmlDevice, "RegisteredDevice", {"deviceid", "codeid"}, true, true);
 		
 		Device::DeviceId deviceId = std::stoi(xmlDevice->Attribute("deviceid"));
-		int codeId                = std::stoi(xmlDevice->Attribute("codeid"));
+		int              codeId   = std::stoi(xmlDevice->Attribute("codeid"));
 		
 		RFDispatcher::getInstance()->registerDevice(Device::getDevice(deviceId), codeId);
 	}
 }
-
-
 
 
 Wt::WApplication* createWebApp(const Wt::WEnvironment& env)

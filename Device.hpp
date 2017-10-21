@@ -16,7 +16,7 @@
 // Macro for registrating in class Factory a derived class of Device.
 // The derived class must implement a constructor with input signature
 // <int, const stateStrVec&> (device id, state initialization string vector)
-#define register_in_factory(DeviceType)\
+#define register_device_in_factory(DeviceType)\
 class DeviceType;\
 FactoryRegistrar<DeviceType, Device::DeviceId, StateStrVec> registrar_##DeviceType(#DeviceType);
 
@@ -46,12 +46,14 @@ public:    // Static interface
 	static Device*          getDevice(DeviceId);
     static void             freeDevice(DeviceId);
     static void             freeAllDevices();
+	static void             setDeviceStateFromXML(XMLElement*);
+    static bool             checkXMLDeviceDefs();
 	static DeviceActuator   getDeviceActuatorFromXML(XMLElement*);
 
 private:   // Member vars
     DeviceId         deviceId;
 	SignalSessions<> beforeDeleteSignal;
-	std::string      name, location; // TODO: implement these vars and their setter and getter funcs in a location manager rather than here
+	std::string      _class, name, location; // TODO: implement these vars and their setter and getter funcs in a location manager rather than here
 
 	
 public:    // Public interface
@@ -62,11 +64,13 @@ public:    // Public interface
 	SignalSessions<>&                beforeDelete() {return beforeDeleteSignal;}
 	
 	// Non-virtual interface
-	int                              getId()        {return deviceId;}
-	void                             setName(const std::string& _name)         {name = _name;}
-	void                             setLocation(const std::string& _location) {location = _location;}
-	std::string                      getName()                                 {return name;}
-	std::string                      getLocation()                             {return location;}
+	void                             setClass(   const std::string& __class)    {_class    = __class;}
+	void                             setName(    const std::string&  _name)     { name     =  _name;}
+	void                             setLocation(const std::string&  _location) { location =  _location;}
+	int                              getId()                                    {return  deviceId;}
+	std::string                      getClass()                                 {return _class;}
+	std::string                      getName()                                  {return  name;}
+	std::string                      getLocation()                              {return  location;}
 	
 	// Virtual interface
 	virtual void                     setState(const StateStrVec&, bool force = FORCEDEFAULT)=0;

@@ -27,7 +27,9 @@ Wt::WVBoxLayout* WebApp::getPanelLayoutFromXML(XMLElement* xmlPanel)
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->setSpacing(4);
 
-	for (XMLElement* xmlElement = xmlPanel->FirstChildElement(); xmlElement != nullptr; xmlElement = xmlElement->NextSiblingElement())
+	for(XMLElement* xmlElement = xmlPanel->FirstChildElement();
+		xmlElement != nullptr;
+		xmlElement             = xmlElement->NextSiblingElement())
 	{
 		if      (ConfigLoader::elementIs(*xmlElement, "PowerSwitchDeviceGroup"))
 			layout->addWidget(WPowerSwitchDeviceGroup::parseXML(xmlElement));
@@ -77,14 +79,14 @@ WebApp::WebApp(const Wt::WEnvironment& env) : Wt::WApplication(env)
 
 	// Load panels from xml config-file
 	XMLElement* xmlWebApp = ConfigLoader::getInstance()->getRootElement("WebApp");
-	for (XMLElement* xmlElement = xmlWebApp->FirstChildElement(); xmlElement != nullptr; xmlElement = xmlElement->NextSiblingElement())
+
+	for(XMLElement* xmlPanel = xmlWebApp->FirstChildElement("Panel");
+		xmlPanel != nullptr; // No need for full validation of xml-element Panel here, handled by getPanelLayoutFromXML(...)
+		xmlPanel = xmlPanel->NextSiblingElement("Panel"))
 	{
-		if (ConfigLoader::elementIs(*xmlElement, "Panel"))
-		{
-			Wt::WContainerWidget* container = new Wt::WContainerWidget();
-			container->setLayout(getPanelLayoutFromXML(xmlElement));
-			menu->addItem(xmlElement->Attribute("menuitemstring"), container);
-		}
+		Wt::WContainerWidget* container = new Wt::WContainerWidget();
+		container->setLayout(getPanelLayoutFromXML(xmlPanel));
+		menu->addItem(xmlPanel->Attribute("menuitemstring"), container);
 	}
 	
 	//std::cout << std::endl << "WebApp session " << sessionId() << " constructor" << std::endl;

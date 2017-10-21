@@ -14,6 +14,9 @@ using namespace tinyxml2;
 	#define XMLCheckError(result) if (result != XML_NO_ERROR) { std::cout << "Error: " << result << std::endl; exit(EXIT_FAILURE);}
 #endif
 
+#ifndef XMLAssignCheckNull
+	#define XMLAssignCheckNull(result, lvalue)  if (result == nullptr) { std::cout << "Error: XMLCheckNull received null pointer." << std::endl; exit(EXIT_FAILURE);} else {lvalue = result;}
+#endif
 
 class ConfigLoader
 {
