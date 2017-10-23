@@ -21,9 +21,6 @@ protected:
 	
 	static bool          terminateFlag;
 
-	typedef std::map<Device::DeviceId, DeviceData> DeviceMap;
-	DeviceMap deviceMap;
-
 public:
 
 	enum Command {TurnOn, TurnOff, Dim};
@@ -47,6 +44,9 @@ public:
 	
 protected:
 
+	typedef std::map<Device::DeviceId, DeviceData> DeviceMap;
+	DeviceMap deviceMap;
+
 	typedef std::list<CommandData>                         DeviceCommandQueue;
 	typedef std::map<Device::DeviceId, DeviceCommandQueue> CommandQueue;
 	CommandQueue                                           commandQueue;
@@ -62,12 +62,6 @@ protected:
 
 struct DeviceData
 {
-	DeviceData() = default;
-	DeviceData(Device* _device, int _codeId) : device(_device), codeId(_codeId) {}
-	DeviceData(const DeviceData&)  = default;
-	constexpr DeviceData(DeviceData&&) = default;
-	DeviceData& operator=(const DeviceData& deviceData) {device = deviceData.device; codeId = deviceData.codeId; return *this;} 
-	
 	Device* device;
 	int codeId;
 };

@@ -23,7 +23,7 @@ RFDispatcher::~RFDispatcher()
 void RFDispatcher::registerDevice(Device* device, int codeId)
 {
 	//mtx.lock();
-	deviceMap[device->getId()] = DeviceData(device, codeId);
+	deviceMap[device->getId()] = DeviceData{device, codeId};
 	commandQueue[device->getId()] = DeviceCommandQueue();
 	//mtx.unlock();
 }
@@ -39,11 +39,11 @@ void RFDispatcher::run()
 {
 	while (!terminateFlag)
 	{
-		for (CommandQueue::iterator it = commandQueue.begin(); it != commandQueue.end(); ++it)
+		for (auto it : commandQueue)
 		{
-			while (!it->second.empty())
+			while (!it.second.empty())
 			{
-				CommandData command = it->second.front();
+				CommandData command = it.second.front();
 				switch (command.command)
 				{
 				case TurnOn:
@@ -60,7 +60,7 @@ void RFDispatcher::run()
 				}
 				//std::cout << "Code ID: " << command.codeId << "  Command: " << command.command << std::endl;
 				//mtx.lock();
-				it->second.clear();
+				it.second.clear();
 				//mtx.unlock();
 			}
 		}
