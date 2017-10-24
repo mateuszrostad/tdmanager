@@ -8,7 +8,7 @@
 #include <string>
 #include "State.hpp"
 #include "Factory.hpp"
-#include "SimpleSignal.hpp"
+#include "WSignal.hpp"
 #include "ConfigLoader.hpp"
 
 #define FORCEDEFAULT false
@@ -49,9 +49,9 @@ public:    // Static interface
 	static DeviceActuator   getDeviceActuatorFromXML(XMLElement*);
 
 private:   // Member vars
-    DeviceId         deviceId;
-	SignalSessions<> beforeDeleteSignal;
-	std::string      name, location; // TODO: implement these vars and their setter and getter funcs in a location manager rather than here
+    DeviceId    deviceId;
+	WSignal<>   beforeDeleteSignal;
+	std::string name, location; // TODO: implement these vars and their setter and getter funcs in a location manager rather than here
 
 	
 public:    // Public interface
@@ -59,7 +59,7 @@ public:    // Public interface
     // Constructor
     Device(DeviceId);
 
-	SignalSessions<>&                beforeDelete() {return beforeDeleteSignal;}
+	WSignal<>&                       beforeDelete() {return beforeDeleteSignal;}
 	
 	// Non-virtual interface
 	int                              getId()        {return deviceId;}

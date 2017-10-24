@@ -3,7 +3,7 @@
 
 #include "Device.hpp"
 #include "State.hpp"
-#include "SimpleSignal.hpp"
+#include "WSignal.hpp"
 #include <vector>
 //#include <string> // stoi, to_string
 
@@ -20,14 +20,14 @@ struct PowerSwitchInterface
 	enum {POWERSTATE = 0};
     enum PowerState {Off, On};
 
-	virtual void       turnOn( bool force = FORCEDEFAULT)=0;
-	virtual void       turnOff(bool force = FORCEDEFAULT)=0;
-	virtual void       setPowerState(PowerState, bool force = FORCEDEFAULT)=0;
-	virtual PowerState getPowerState()=0;
+	virtual void         turnOn(                   bool force = FORCEDEFAULT)=0;
+	virtual void         turnOff(                  bool force = FORCEDEFAULT)=0;
+	virtual void         setPowerState(PowerState, bool force = FORCEDEFAULT)=0;
+	virtual PowerState   getPowerState()=0;
 
-    SignalSessions<PowerState>& powerStateUpdated() {return powerStateUpdatedSignal;}
+    WSignal<PowerState>& powerStateUpdated() {return powerStateUpdatedSignal;}
 protected:
-    SignalSessions<PowerState> powerStateUpdatedSignal;
+    WSignal<PowerState>  powerStateUpdatedSignal;
 };
 
 
@@ -90,14 +90,14 @@ struct DimmerPowerSwitchInterface : public PowerSwitchInterface
 	enum {DIMLEVEL = 1};
 	typedef unsigned int DimLevel;
 
-	virtual void     setDimLevel(DimLevel, bool force = FORCEDEFAULT)=0;
-    virtual void     dim(        DimLevel, bool force = FORCEDEFAULT)=0;
-	virtual DimLevel getDimLevel()=0;
-    virtual DimLevel getDimLevelMax()=0;
+	virtual void       setDimLevel(DimLevel, bool force = FORCEDEFAULT)=0;
+    virtual void       dim(        DimLevel, bool force = FORCEDEFAULT)=0;
+	virtual DimLevel   getDimLevel()=0;
+    virtual DimLevel   getDimLevelMax()=0;
 	
-    SignalSessions<DimLevel>& dimLevelUpdated() {return dimLevelUpdatedSignal;}
+    WSignal<DimLevel>& dimLevelUpdated() {return dimLevelUpdatedSignal;}
 protected:
-    SignalSessions<DimLevel> dimLevelUpdatedSignal;
+    WSignal<DimLevel>  dimLevelUpdatedSignal;
 };
 
 
