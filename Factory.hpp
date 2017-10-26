@@ -24,15 +24,9 @@ struct Factory
 	typedef std::string Key;
 	
 	template <typename ...Args>
-	struct Creator
-	{
-		typedef Manufacturable*(Type)(Args...);
-	};
-	
-	template <typename ...Args>
 	struct Map
 	{
-		typedef typename Creator<Args...>::Type CreatorType;
+		typedef Manufacturable*(CreatorType)(Args...);
 		typedef std::function<CreatorType> CreatorFunc;
 		typedef std::map<Key, CreatorFunc> MapType;
 
