@@ -75,7 +75,7 @@ public:    // Public interface
 	
 	// Virtual interface
 	virtual void                     setState(const StateStrVec&, bool force = FORCEDEFAULT)=0;
-	virtual StateStrVec              getSateStringVector()=0;
+	virtual StateStrVec              getStateStringVector()=0;
 	virtual void                     forceActuate()=0;
 	virtual DeviceActuator           getActuator(bool force = FORCEDEFAULT)=0;
 	virtual DeviceActuator           getActuator(const StateStrVec&, bool force = FORCEDEFAULT)=0;

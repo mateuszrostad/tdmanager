@@ -58,7 +58,7 @@ public: // Public interface
     void                             turnOn(                                bool force = FORCEDEFAULT)  {setPowerState(On, force);}                     // Inherited from PowerSwitchInterface
     void                             turnOff(                               bool force = FORCEDEFAULT)  {setPowerState(Off, force);}                    // Inherited from PowerSwitchInterface
 
-	StateStrVec                      getSateStringVector()                                              {return state.getStringVector();}               // Inherited from Device
+	StateStrVec                      getStateStringVector()                                             {return state.getStringVector();}               // Inherited from Device
 	StateType                        getState()                                                         {return state;}
 	template <std::size_t N>
 	StateType::Type<N>               getState()                                                         {return state.get<N>();}
@@ -139,7 +139,7 @@ public:	 // Public interface
     void                             turnOff(                               bool force = FORCEDEFAULT)  {setPowerState(Off, force);}                   // Inherited from PowerSwitchInterface
     void                             dim(DimLevel _dimLevel,                bool force = FORCEDEFAULT)  {setDimLevel(getDimLevel() + _dimLevel);}      // Inherited from DimmerPowerSwitchInterface
 
-	StateStrVec                      getSateStringVector()                                              {return state.getStringVector();}               // Inherited from Device
+	StateStrVec                      getStateStringVector()                                             {return state.getStringVector();}               // Inherited from Device
 	StateType                        getState()                                                         {return state;}
 	template <std::size_t N>
 	StateType::Type<N>               getState()                                                         {return state.get<N>();}
