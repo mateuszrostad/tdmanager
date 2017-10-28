@@ -51,8 +51,8 @@ void Device::freeDevice(DeviceId id)
 
 void Device::freeAllDevices()
 {
-	for (DeviceMap::iterator it = deviceMap.begin(); it != deviceMap.end(); ++it)
-		delete it->second;
+	for (auto it : deviceMap)
+		delete it.second;
 	deviceMap.clear();
 }
 

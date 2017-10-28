@@ -14,7 +14,6 @@ class Device;
 
 void              makeDevices();
 void              registerDevicesWithRFDispatcher();
-void              restoreDeviceStates();
 Wt::WApplication* createWebApp(const Wt::WEnvironment&);
 void              interruptFunction(int);
 void              rawEventCallback(const char*, int, int, void*);
