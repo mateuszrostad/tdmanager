@@ -13,6 +13,7 @@ namespace Wt
 class Device;
 
 void              makeDevices();
+void              saveDeviceLog();
 void              registerDevicesWithRFDispatcher();
 Wt::WApplication* createWebApp(const Wt::WEnvironment&);
 void              interruptFunction(int);

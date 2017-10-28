@@ -23,6 +23,12 @@ ConfigLoader::ConfigLoader(const char* xmlfilename)
 ConfigLoader::~ConfigLoader() {}
 
 
+void ConfigLoader::saveFile(const char* xmlfilename)
+{
+	XMLCheckError(doc.SaveFile(xmlfilename));
+}
+
+	
 XMLElement* ConfigLoader::getRootElement(const std::string& elementName)
 {
 	XMLElement* xmlElement = doc.FirstChildElement(elementName.c_str());

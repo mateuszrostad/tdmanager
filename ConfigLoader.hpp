@@ -33,10 +33,13 @@ public:
 	ConfigLoader(const char* xmlfilename = "config.xml");
 	~ConfigLoader();
 	
-	XMLElement* getRootElement(const std::string&);
-	static bool validateElement(const XMLElement&, const std::string&, const std::vector<std::string>& attributes, bool verbose = true, bool hard = false);
-	static bool validateElement(const XMLElement&, const std::string&, bool verbose = true, bool hard = false);
-	static bool elementIs(const XMLElement& xmlElement, const std::string& name) {return validateElement(xmlElement, name, false, false);}
+	void         saveFile(const char* xmlfilename = "config.xml");
+	XMLDocument& getDocument() {return doc;}
+	XMLElement*  getRootElement(const std::string&);
+
+	static bool  validateElement(const XMLElement&, const std::string&, const std::vector<std::string>& attributes, bool verbose = true, bool hard = false);
+	static bool  validateElement(const XMLElement&, const std::string&, bool verbose = true, bool hard = false);
+	static bool  elementIs(const XMLElement& xmlElement, const std::string& name) {return validateElement(xmlElement, name, false, false);}
 	
 };
 

@@ -50,6 +50,7 @@ int main(int argc, char** argv)
 	tdUnregisterCallback(callbackId);
 	tdClose();
 
+	saveDeviceLog();
 	Device::freeAllDevices();
 
 	return 0;
@@ -122,6 +123,33 @@ void makeDevices()
 		Device::getDevice(id)->setLocation(deviceData.second.location);
 	}
 
+}
+
+
+void saveDeviceLog()
+{
+	XMLElement* xmlDeviceStateLog = ConfigLoader::getInstance()->getRootElement("DeviceStateLog");
+	
+	xmlDeviceStateLog->DeleteChildren();
+	
+	for (auto device : Device::getDeviceMap())
+	{
+		XMLElement* deviceXML = ConfigLoader::getInstance()->getDocument().NewElement("Device");
+		deviceXML->SetAttribute("id", device.second->getId());
+		
+		StateStrVec stateStrVec = device.second->getStateStringVector();
+		for (unsigned int i = 0; i < stateStrVec.size(); i++)
+		{
+			XMLElement* stateXML = ConfigLoader::getInstance()->getDocument().NewElement("StateParam");
+			stateXML->SetAttribute("index", i);
+			stateXML->SetAttribute("value", stateStrVec[i].c_str());
+			deviceXML->InsertEndChild(stateXML);
+		}
+		
+		xmlDeviceStateLog->InsertEndChild(deviceXML);
+	}
+	
+	ConfigLoader::getInstance()->saveFile();
 }
 
 

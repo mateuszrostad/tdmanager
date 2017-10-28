@@ -1,419 +1,422 @@
 <DeviceDefinitions>
-	<Device id="0" class="DeviceNexaEYCR201" name="Stor hjørnelampe" location="Stue"/>
-	<Device id="1" class="DeviceNexaEYCR201" name="Leselampe" location="Stue"/>
-	<Device id="2" class="DeviceNexaEYCR201" name="Grasshopper-lampe" location="Stue"/>
-	<Device id="3" class="DeviceNexaEYCR201" name="Små bordlamper" location="Stue"/>
-	<Device id="4" class="DeviceNexaEYCR201" name="Messingpendel" location="Spisestue"/>
-	<Device id="5" class="DeviceNexaEYCR201" name="Taklampe" location="Gang"/>
-	<Device id="6" class="DeviceNexaEYCR201" name="Takskinne" location="Kjellerstue"/>
-	<Device id="7" class="DeviceNexaEYCR201" name="Gulvlamper forran" location="Kjellerstue"/>
-	<Device id="8" class="DeviceNexaEYCR201" name="Gulvlamper bak" location="Kjellerstue"/>
-	<Device id="9" class="DeviceNexaEYCR201" name="Leselampe" location="Kjellerstue"/>
-	<Device id="10" class="DeviceNexaEYCR201" name="Taklampe" location="Soverom 1"/>
-	<Device id="11" class="DeviceNexaEYCR201" name="Nattbordlampe innerst" location="Soverom 1"/>
-	<Device id="12" class="DeviceNexaEYCR201" name="Nattbordlampe ytterst" location="Soverom 1"/>
-	<Device id="13" class="DeviceNexaLGDR3500" name="Epletre underlys" location="Hage"/>
+    <Device id="0" class="DeviceNexaEYCR201" name="Stor hjørnelampe" location="Stue"/>
+    <Device id="1" class="DeviceNexaEYCR201" name="Leselampe" location="Stue"/>
+    <Device id="2" class="DeviceNexaEYCR201" name="Grasshopper-lampe" location="Stue"/>
+    <Device id="3" class="DeviceNexaEYCR201" name="Små bordlamper" location="Stue"/>
+    <Device id="4" class="DeviceNexaEYCR201" name="Messingpendel" location="Spisestue"/>
+    <Device id="5" class="DeviceNexaEYCR201" name="Taklampe" location="Gang"/>
+    <Device id="6" class="DeviceNexaEYCR201" name="Takskinne" location="Kjellerstue"/>
+    <Device id="7" class="DeviceNexaEYCR201" name="Gulvlamper forran" location="Kjellerstue"/>
+    <Device id="8" class="DeviceNexaEYCR201" name="Gulvlamper bak" location="Kjellerstue"/>
+    <Device id="9" class="DeviceNexaEYCR201" name="Leselampe" location="Kjellerstue"/>
+    <Device id="10" class="DeviceNexaEYCR201" name="Taklampe" location="Soverom 1"/>
+    <Device id="11" class="DeviceNexaEYCR201" name="Nattbordlampe innerst" location="Soverom 1"/>
+    <Device id="12" class="DeviceNexaEYCR201" name="Nattbordlampe ytterst" location="Soverom 1"/>
+    <Device id="13" class="DeviceNexaLGDR3500" name="Epletre underlys" location="Hage"/>
 </DeviceDefinitions>
+
 <DeviceStateLog>
-	<Device id="0">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="1">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="2">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="3">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="4">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="5">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="6">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="7">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="8">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="9">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="10">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="11">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="12">
-		<StateParam index="0" value="1"/>
-		<StateParam index="1" value="10"/>
-	</Device>
-	<Device id="13">
-		<StateParam index="0" value="1"/>
-	</Device>
+    <Device id="0">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="1">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="2">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="3">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="4">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="5">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="6">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="7">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="8">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="9">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="10">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="11">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="12">
+        <StateParam index="0" value="1"/>
+        <StateParam index="1" value="10"/>
+    </Device>
+    <Device id="13">
+        <StateParam index="0" value="1"/>
+    </Device>
 </DeviceStateLog>
+
 <RFDispatcher>
-	<RegisteredDevice deviceid="0" codeid="100"/>
-	<RegisteredDevice deviceid="1" codeid="101"/>
-	<RegisteredDevice deviceid="2" codeid="102"/>
-	<RegisteredDevice deviceid="3" codeid="103"/>
-	<RegisteredDevice deviceid="4" codeid="104"/>
-	<RegisteredDevice deviceid="5" codeid="105"/>
-	<RegisteredDevice deviceid="6" codeid="106"/>
-	<RegisteredDevice deviceid="7" codeid="107"/>
-	<RegisteredDevice deviceid="8" codeid="108"/>
-	<RegisteredDevice deviceid="9" codeid="109"/>
-	<RegisteredDevice deviceid="10" codeid="110"/>
-	<RegisteredDevice deviceid="11" codeid="111"/>
-	<RegisteredDevice deviceid="12" codeid="112"/>
-	<RegisteredDevice deviceid="13" codeid="113"/>
+    <RegisteredDevice deviceid="0" codeid="100"/>
+    <RegisteredDevice deviceid="1" codeid="101"/>
+    <RegisteredDevice deviceid="2" codeid="102"/>
+    <RegisteredDevice deviceid="3" codeid="103"/>
+    <RegisteredDevice deviceid="4" codeid="104"/>
+    <RegisteredDevice deviceid="5" codeid="105"/>
+    <RegisteredDevice deviceid="6" codeid="106"/>
+    <RegisteredDevice deviceid="7" codeid="107"/>
+    <RegisteredDevice deviceid="8" codeid="108"/>
+    <RegisteredDevice deviceid="9" codeid="109"/>
+    <RegisteredDevice deviceid="10" codeid="110"/>
+    <RegisteredDevice deviceid="11" codeid="111"/>
+    <RegisteredDevice deviceid="12" codeid="112"/>
+    <RegisteredDevice deviceid="13" codeid="113"/>
 </RFDispatcher>
+
 <WebApp>
-	<Panel menuitemstring="Stue">
-		<PowerSwitchDeviceGroup string="Alle lamper" style="Header">
-			<Device id="0"/>
-			<Device id="1"/>
-			<Device id="2"/>
-			<Device id="3"/>
-			<Device id="4"/>
-			<Device id="5"/>
-		</PowerSwitchDeviceGroup>
-		<DimmerPowerSwitchSingleDevice deviceid="0" style="Body"/>
-		<DimmerPowerSwitchSingleDevice deviceid="1" style="Body"/>
-		<DimmerPowerSwitchSingleDevice deviceid="2" style="Body"/>
-		<DimmerPowerSwitchSingleDevice deviceid="3" style="Body"/>
-		<DimmerPowerSwitchSingleDevice deviceid="4" style="Body"/>
-		<DimmerPowerSwitchSingleDevice deviceid="5" style="Body"/>
-		<VerticalSpace/>
-		<PresetButtonGrid>
-			<PresetButton string="Normalt lys">
-				<Device id="0">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="1">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="2">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="3">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="6"/>
-				</Device>
-				<Device id="4">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="5">
-					<StateParam index="0" value="1"/>
-					<StateParam index="0" value="10"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Flomlys">
-				<Device id="0">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-				<Device id="1">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-				<Device id="2">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-				<Device id="3">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-				<Device id="4">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-				<Device id="5">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Laveste dimming">
-				<Device id="0">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="1">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="2">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="3">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="4">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="5">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Ingen tilstede">
-				<Device id="0">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="2"/>
-				</Device>
-				<Device id="1">
-					<StateParam index="0" value="0"/>
-					<StateParam index="1" value="2"/>
-				</Device>
-				<Device id="2">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="1"/>
-				</Device>
-				<Device id="3">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="2"/>
-				</Device>
-				<Device id="4">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="2"/>
-				</Device>
-				<Device id="5">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="2"/>
-				</Device>
-			</PresetButton>
-		</PresetButtonGrid>
-	</Panel>
-	<Panel menuitemstring="Kjellerstue">
-		<PowerSwitchDeviceGroup string="Alle lamper" style="Header">
-			<Device id="6"/>
-			<Device id="7"/>
-			<Device id="8"/>
-			<Device id="9"/>
-		</PowerSwitchDeviceGroup>
-		<DimmerPowerSwitchSingleDevice deviceid="6" style="Body"/>
-		<DimmerPowerSwitchSingleDevice deviceid="7" style="Body"/>
-		<DimmerPowerSwitchSingleDevice deviceid="8" style="Body"/>
-		<DimmerPowerSwitchSingleDevice deviceid="9" style="Body"/>
-		<VerticalSpace/>
-		<PresetButtonGrid>
-			<PresetButton string="Jevnt lys">
-				<Device id="6">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="7">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="8">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="9">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="8"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Lavt lys">
-				<Device id="6">
-					<StateParam index="0" value="0"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="7">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="8">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="9">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="8"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Kinolys">
-				<Device id="6">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="5"/>
-				</Device>
-				<Device id="7">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="8">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="9">
-					<StateParam index="0" value="0"/>
-					<StateParam index="1" value="1"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Laveste dimming">
-				<Device id="6">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="7">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="8">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="9">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Flomlys">
-				<Device id="6">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-				<Device id="7">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-				<Device id="8">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-				<Device id="9">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-			</PresetButton>
-		</PresetButtonGrid>
-	</Panel>
-	<Panel menuitemstring="Hovedsoverom">
-		<PowerSwitchDeviceGroup string="Alle lamper" style="Header">
-			<Device id="10"/>
-			<Device id="11"/>
-			<Device id="12"/>
-		</PowerSwitchDeviceGroup>
-		<DimmerPowerSwitchSingleDevice deviceid="10" style="Body"/>
-		<DimmerPowerSwitchSingleDevice deviceid="11" style="Body"/>
-		<DimmerPowerSwitchSingleDevice deviceid="12" style="Body"/>
-		<VerticalSpace/>
-		<PresetButtonGrid>
-			<PresetButton string="Jevnt lys">
-				<Device id="10">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="11">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="12">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Lavt lys">
-				<Device id="10">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="5"/>
-				</Device>
-				<Device id="11">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="12">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Høyt lys">
-				<Device id="10">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="10"/>
-				</Device>
-				<Device id="11">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="6"/>
-				</Device>
-				<Device id="12">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="6"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Diskret">
-				<Device id="10">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="11">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="1"/>
-				</Device>
-				<Device id="12">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="1"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Laveste dimming">
-				<Device id="10">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="11">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-				<Device id="12">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="0"/>
-				</Device>
-			</PresetButton>
-			<PresetButton string="Flomlys">
-				<Device id="10">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-				<Device id="11">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-				<Device id="12">
-					<StateParam index="0" value="1"/>
-					<StateParam index="1" value="15"/>
-				</Device>
-			</PresetButton>
-		</PresetButtonGrid>
-	</Panel>
-	<Panel menuitemstring="Hage">
-		<PowerSwitchSingleDevice deviceid="13" style="Body"/>
-	</Panel>
+    <Panel menuitemstring="Stue">
+        <PowerSwitchDeviceGroup string="Alle lamper" style="Header">
+            <Device id="0"/>
+            <Device id="1"/>
+            <Device id="2"/>
+            <Device id="3"/>
+            <Device id="4"/>
+            <Device id="5"/>
+        </PowerSwitchDeviceGroup>
+        <DimmerPowerSwitchSingleDevice deviceid="0" style="Body"/>
+        <DimmerPowerSwitchSingleDevice deviceid="1" style="Body"/>
+        <DimmerPowerSwitchSingleDevice deviceid="2" style="Body"/>
+        <DimmerPowerSwitchSingleDevice deviceid="3" style="Body"/>
+        <DimmerPowerSwitchSingleDevice deviceid="4" style="Body"/>
+        <DimmerPowerSwitchSingleDevice deviceid="5" style="Body"/>
+        <VerticalSpace/>
+        <PresetButtonGrid>
+            <PresetButton string="Normalt lys">
+                <Device id="0">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="1">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="2">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="3">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="6"/>
+                </Device>
+                <Device id="4">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="5">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="0" value="10"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Flomlys">
+                <Device id="0">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+                <Device id="1">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+                <Device id="2">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+                <Device id="3">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+                <Device id="4">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+                <Device id="5">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Laveste dimming">
+                <Device id="0">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="1">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="2">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="3">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="4">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="5">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Ingen tilstede">
+                <Device id="0">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="2"/>
+                </Device>
+                <Device id="1">
+                    <StateParam index="0" value="0"/>
+                    <StateParam index="1" value="2"/>
+                </Device>
+                <Device id="2">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="1"/>
+                </Device>
+                <Device id="3">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="2"/>
+                </Device>
+                <Device id="4">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="2"/>
+                </Device>
+                <Device id="5">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="2"/>
+                </Device>
+            </PresetButton>
+        </PresetButtonGrid>
+    </Panel>
+    <Panel menuitemstring="Kjellerstue">
+        <PowerSwitchDeviceGroup string="Alle lamper" style="Header">
+            <Device id="6"/>
+            <Device id="7"/>
+            <Device id="8"/>
+            <Device id="9"/>
+        </PowerSwitchDeviceGroup>
+        <DimmerPowerSwitchSingleDevice deviceid="6" style="Body"/>
+        <DimmerPowerSwitchSingleDevice deviceid="7" style="Body"/>
+        <DimmerPowerSwitchSingleDevice deviceid="8" style="Body"/>
+        <DimmerPowerSwitchSingleDevice deviceid="9" style="Body"/>
+        <VerticalSpace/>
+        <PresetButtonGrid>
+            <PresetButton string="Jevnt lys">
+                <Device id="6">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="7">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="8">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="9">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="8"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Lavt lys">
+                <Device id="6">
+                    <StateParam index="0" value="0"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="7">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="8">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="9">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="8"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Kinolys">
+                <Device id="6">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="5"/>
+                </Device>
+                <Device id="7">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="8">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="9">
+                    <StateParam index="0" value="0"/>
+                    <StateParam index="1" value="1"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Laveste dimming">
+                <Device id="6">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="7">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="8">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="9">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Flomlys">
+                <Device id="6">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+                <Device id="7">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+                <Device id="8">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+                <Device id="9">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+            </PresetButton>
+        </PresetButtonGrid>
+    </Panel>
+    <Panel menuitemstring="Hovedsoverom">
+        <PowerSwitchDeviceGroup string="Alle lamper" style="Header">
+            <Device id="10"/>
+            <Device id="11"/>
+            <Device id="12"/>
+        </PowerSwitchDeviceGroup>
+        <DimmerPowerSwitchSingleDevice deviceid="10" style="Body"/>
+        <DimmerPowerSwitchSingleDevice deviceid="11" style="Body"/>
+        <DimmerPowerSwitchSingleDevice deviceid="12" style="Body"/>
+        <VerticalSpace/>
+        <PresetButtonGrid>
+            <PresetButton string="Jevnt lys">
+                <Device id="10">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="11">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="12">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Lavt lys">
+                <Device id="10">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="5"/>
+                </Device>
+                <Device id="11">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="12">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Høyt lys">
+                <Device id="10">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="10"/>
+                </Device>
+                <Device id="11">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="6"/>
+                </Device>
+                <Device id="12">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="6"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Diskret">
+                <Device id="10">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="11">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="1"/>
+                </Device>
+                <Device id="12">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="1"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Laveste dimming">
+                <Device id="10">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="11">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+                <Device id="12">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="0"/>
+                </Device>
+            </PresetButton>
+            <PresetButton string="Flomlys">
+                <Device id="10">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+                <Device id="11">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+                <Device id="12">
+                    <StateParam index="0" value="1"/>
+                    <StateParam index="1" value="15"/>
+                </Device>
+            </PresetButton>
+        </PresetButtonGrid>
+    </Panel>
+    <Panel menuitemstring="Hage">
+        <PowerSwitchSingleDevice deviceid="13" style="Body"/>
+    </Panel>
 </WebApp>
