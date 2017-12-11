@@ -31,12 +31,12 @@ public:
 	RFDispatcher();
 	~RFDispatcher();
 	
-	void registerDevice(Device*, int);
+	void registerDevice(Device::DeviceId, int);
 	void runThread();
 	void run();
 	
-	void submitCommand(Command, Device*);
-	void submitCommand(Command, Device*, unsigned char);
+	void submitCommand(Command, Device::DeviceId);
+	void submitCommand(Command, Device::DeviceId, unsigned char);
 
 	const DeviceData& getDeviceData(const Device::DeviceId deviceId);
 	
@@ -62,8 +62,9 @@ protected:
 
 struct DeviceData
 {
-	Device* device;
-	int codeId;
+	//Device* device;
+	//Device::DeviceId deviceId;
+	int              codeId;
 };
 
 

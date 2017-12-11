@@ -71,11 +71,16 @@ void makeDevices()
 			paramStrVec.push_back(xmlStateParam->Attribute("value"));
 		}
 
+		std::cout << "A" << std::endl;
 		Factory::make(factoryKey, deviceId, paramStrVec);
+		std::cout << "B" << std::endl;
 
 		Device::getDevice(deviceId)->setName(    xmlDevice->Attribute("name"));
 		Device::getDevice(deviceId)->setLocation(xmlDevice->Attribute("location"));
+
 	}
+
+
 }
 
 
@@ -91,7 +96,7 @@ void registerDevicesWithRFDispatcher()
 		Device::DeviceId deviceId = std::stoi(xmlDevice->Attribute("deviceid"));
 		int codeId                = std::stoi(xmlDevice->Attribute("codeid"));
 		
-		RFDispatcher::getInstance()->registerDevice(Device::getDevice(deviceId), codeId);
+		RFDispatcher::getInstance()->registerDevice(deviceId, codeId);
 	}
 }
 

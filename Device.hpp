@@ -62,7 +62,7 @@ public:    // Public interface
 	WSignal<>&                       beforeDelete() {return beforeDeleteSignal;}
 	
 	// Non-virtual interface
-	int                              getId()        {return deviceId;}
+	DeviceId                         getId()        {return deviceId;}
 	void                             setName(const std::string& _name)         {name = _name;}
 	void                             setLocation(const std::string& _location) {location = _location;}
 	std::string                      getName()                                 {return name;}

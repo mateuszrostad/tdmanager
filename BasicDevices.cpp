@@ -19,7 +19,7 @@ void DevicePowerSwitch::setState(const StateType& _state, bool force)
 	{
 		state.get<POWERSTATE>() = newPowerState;
 		powerStateUpdated().emit(newPowerState);
-		RFDispatcher::getInstance()->submitCommand(newPowerState == On ? RFDispatcher::TurnOn : RFDispatcher::TurnOff, this);
+		RFDispatcher::getInstance()->submitCommand(newPowerState == On ? RFDispatcher::TurnOn : RFDispatcher::TurnOff, getId());
 	}
 	else
 		std::cout << "tdmanager: DevicePowerSwitch (device id " << getId() << ") skipped submitting command " << (newPowerState == On ? "TurnOn" : "TurnOff") << " to tellstick daemon" << std::endl;
@@ -39,7 +39,7 @@ void DevicePowerSwitch::setState<DevicePowerSwitch::POWERSTATE>(StateType::Type<
 	{
 		state.get<POWERSTATE>() = newPowerState;
 		powerStateUpdated().emit(newPowerState);
-		RFDispatcher::getInstance()->submitCommand(newPowerState == On ? RFDispatcher::TurnOn : RFDispatcher::TurnOff, this);
+		RFDispatcher::getInstance()->submitCommand(newPowerState == On ? RFDispatcher::TurnOn : RFDispatcher::TurnOff, getId());
 	}
 	else
 		std::cout << "tdmanager: DevicePowerSwitch (device id " << getId() << ") skipped submitting command " << (newPowerState == On ? "TurnOn" : "TurnOff") << " to tellstick daemon" << std::endl;
@@ -89,14 +89,14 @@ void DeviceDimmerPowerSwitch::setState(const StateType& _state, bool force)
 	if (force)
 	{
 		if (newPowerState == On)
-			RFDispatcher::getInstance()->submitCommand(RFDispatcher::Dim, this, hwDimValues[newDimLevel]);
+			RFDispatcher::getInstance()->submitCommand(RFDispatcher::Dim, getId(), hwDimValues[newDimLevel]);
 		else // implied: newPowerState == Off
-			RFDispatcher::getInstance()->submitCommand(RFDispatcher::TurnOff, this);
+			RFDispatcher::getInstance()->submitCommand(RFDispatcher::TurnOff, getId());
 	}
 	else if (powerTurnedOn || (powerUnchangedOn && dimLevelChanged))
-		RFDispatcher::getInstance()->submitCommand(RFDispatcher::Dim, this, hwDimValues[newDimLevel]);
+		RFDispatcher::getInstance()->submitCommand(RFDispatcher::Dim, getId(), hwDimValues[newDimLevel]);
 	else if (powerTurnedOff)
-		RFDispatcher::getInstance()->submitCommand(RFDispatcher::TurnOff, this);
+		RFDispatcher::getInstance()->submitCommand(RFDispatcher::TurnOff, getId());
 	else
 		std::cout << "tdmanager: DeviceDimmerPowerSwitch (device id " << getId() << ") skipped submitting command to tellstick daemon" << std::endl;
 }
@@ -115,9 +115,9 @@ void DeviceDimmerPowerSwitch::setState<DeviceDimmerPowerSwitch::POWERSTATE>(Stat
 		state.get<POWERSTATE>() = newPowerState;
 		powerStateUpdated().emit(newPowerState);
 		if (newPowerState == On) // changed or forced
-			RFDispatcher::getInstance()->submitCommand(RFDispatcher::Dim, this, hwDimValues[getDimLevel()]);
+			RFDispatcher::getInstance()->submitCommand(RFDispatcher::Dim, getId(), hwDimValues[getDimLevel()]);
 		else // implied: newPowerState == Off, changed or forced
-			RFDispatcher::getInstance()->submitCommand(RFDispatcher::TurnOff, this);
+			RFDispatcher::getInstance()->submitCommand(RFDispatcher::TurnOff, getId());
 	}
 	else // power state unchanged and unforced
 		std::cout << "tdmanager: DevicePowerSwitch (device id " << getId() << ") skipped submitting command " << (newPowerState == On ? "Dim" : "TurnOff") << " to tellstick daemon" << std::endl;
@@ -135,7 +135,7 @@ void DeviceDimmerPowerSwitch::setState<DeviceDimmerPowerSwitch::DIMLEVEL>(StateT
 		dimLevelUpdated().emit(newDimLevel);
 		if (getPowerState() == On)
 		{
-			RFDispatcher::getInstance()->submitCommand(RFDispatcher::Dim, this, hwDimValues[newDimLevel]);
+			RFDispatcher::getInstance()->submitCommand(RFDispatcher::Dim, getId(), hwDimValues[newDimLevel]);
 			commandSubmitted = true;
 		}
 	}

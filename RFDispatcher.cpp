@@ -20,11 +20,19 @@ RFDispatcher::~RFDispatcher()
 {}
 
 	
-void RFDispatcher::registerDevice(Device* device, int codeId)
+void RFDispatcher::registerDevice(Device::DeviceId deviceId, int codeId)
 {
+	if (~Device::isValid(deviceId))
+	{
+		std::cout << "RFDispatcher::registerDevice(...): Received invalid device id " << deviceId << "." << std::endl;
+		exit(EXIT_FAILURE);
+	}
+
 	//mtx.lock();
-	deviceMap[device->getId()] = DeviceData{device, codeId};
-	commandQueue[device->getId()] = DeviceCommandQueue();
+	//deviceMap[device->getId()] = DeviceData{device, codeId};
+	//commandQueue[device->getId()] = DeviceCommandQueue();
+	deviceMap[deviceId] = DeviceData{codeId};
+	commandQueue[deviceId] = DeviceCommandQueue();
 	//mtx.unlock();
 }
 	
@@ -69,22 +77,32 @@ void RFDispatcher::run()
 }
 	
 
-void RFDispatcher::submitCommand(Command command, Device* device)
+void RFDispatcher::submitCommand(Command command, Device::DeviceId deviceId)
 {
-	std::cout << "RFDispatcher::submitCommand(" << command << ", " << "deviceId " << device->getId() << ")" << std::endl;
+	if (~Device::isValid(deviceId))
+	{
+		std::cout << "RFDispatcher::submitCommand(Command, Device::DeviceId): Received invalid device id " << deviceId << "." << std::endl;
+		exit(EXIT_FAILURE);
+	}
 	
-	int deviceId = device->getId();
+	std::cout << "RFDispatcher::submitCommand(" << command << ", " << "deviceId " << deviceId << ")" << std::endl;
+	
 	mtx.lock();
 	commandQueue[deviceId].emplace_front(command, getDeviceData(deviceId).codeId);
 	mtx.unlock();
 }
 
 
-void RFDispatcher::submitCommand(Command command, Device* device, unsigned char value)
+void RFDispatcher::submitCommand(Command command, Device::DeviceId deviceId, unsigned char value)
 {
-	std::cout << "RFDispatcher::submitCommand(" << command << ", " << "device " << device->getId() << ", " << int(value) << ")" << std::endl;
+	if (~Device::isValid(deviceId))
+	{
+		std::cout << "RFDispatcher::submitCommand(Command, Device::DeviceId, unsigned char): Received invalid device id " << deviceId << "." << std::endl;
+		exit(EXIT_FAILURE);
+	}
+	
+	std::cout << "RFDispatcher::submitCommand(" << command << ", " << "device " << deviceId << ", " << int(value) << ")" << std::endl;
 
-	int deviceId = device->getId();
 	mtx.lock();
 	commandQueue[deviceId].emplace_front(command, getDeviceData(deviceId).codeId, value);
 	mtx.unlock();
@@ -95,7 +113,7 @@ const DeviceData& RFDispatcher::getDeviceData(const Device::DeviceId deviceId)
 {
 	if (deviceMap.count(deviceId) != 1)
 	{
-		std::cout << "RFDispatcher::getDeviceData(): Device " << deviceId << " not regestired with RFDispatcher." << std::endl;
+		std::cout << "RFDispatcher::getDeviceData(Device::DeviceId): Device " << deviceId << " not regestired with RFDispatcher." << std::endl;
 		exit(EXIT_FAILURE);
 	}
 	else
