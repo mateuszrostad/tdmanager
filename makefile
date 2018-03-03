@@ -6,7 +6,7 @@ BUILDDIR   = build
 EXECUTABLE = tdmanager
 CC         = g++
 CFLAGS     = -c -Wall -std=c++14
-LDFLAGS    = -ltelldus-core -lpthread -lwthttp -lwt -ltinyxml2
+LDFLAGS    = -Larm-linux-gnueabihf -ltelldus-core -lpthread -lwthttp -lwt -ltinyxml2
 
 all: $(SOURCES) $(HEADERS) $(EXECUTABLE)
     

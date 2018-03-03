@@ -11,7 +11,7 @@ using namespace tinyxml2;
 
 
 #ifndef XMLCheckError
-	#define XMLCheckError(result) if (result != XML_NO_ERROR) { std::cout << "Error: " << result << std::endl; exit(EXIT_FAILURE);}
+	#define XMLCheckError(result) if (result != XML_SUCCESS) { std::cout << "Error: " << result << std::endl; exit(EXIT_FAILURE);}
 #endif
 
 #ifndef XMLAssignCheckNull
